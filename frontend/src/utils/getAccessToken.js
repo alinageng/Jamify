@@ -1,19 +1,22 @@
-export async function getAccessToken(clientId, code) {
-    const verifier = localStorage.getItem("verifier");
+export async function getAccessToken(clientId, clientSecret) {
+    const authParameters = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: `grant_type=client_credentials&client_id=${clientId}&client_secret=${clientSecret}`
+    };
 
-    const params = new URLSearchParams();
-    params.append("client_id", clientId);
-    params.append("grant_type", "authorization_code");
-    params.append("code", code);
-    params.append("redirect_uri", "http://localhost:5173/callback");
-    params.append("code_verifier", verifier);
+    try {
+        const response = await fetch('https://accounts.spotify.com/api/token', authParameters);
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
 
-    const result = await fetch("https://accounts.spotify.com/api/token", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: params
-    });
-
-    const { access_token } = await result.json();
-    return access_token;
+        const data = await response.json();
+        return data.access_token;
+    } catch (error) {
+        console.error("Error fetching access token:", error);
+        throw error;
+    }
 }

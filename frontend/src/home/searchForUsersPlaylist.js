@@ -1,24 +1,16 @@
 import {useEffect, useState} from "react";
+import {getAccessToken} from "../utils/getAccessToken";
 import {CLIENT_ID, CLIENT_SECRET} from "../utils/tokens";
-import 'bootstrap/dist/css/bootstrap.css';
+import {Link} from "react-router-dom";
 
-function HomePage() {
-  const [accessToken, setAccessToken] = useState("");
+function SearchForUsersPlaylist() {
+  const [accessToken, setAccessToken] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState(null);
+  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
-    const authParameters = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      body: 'grant_type=client_credentials&client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET
-    };
-    fetch('https://accounts.spotify.com/api/token', authParameters)
-      .then(result=>result.json())
-      .then(data=>setAccessToken(data.access_token))
-      .catch(error => console.error("Error fetching access token:", error));
+    getAccessToken(CLIENT_ID, CLIENT_SECRET).
+    then((token) => setAccessToken(token));
   }, [])
 
   async function search() {
@@ -35,11 +27,12 @@ function HomePage() {
       }
     };
     try {
+      console.log(accessToken);
       const response = await fetch(`https://api.spotify.com/v1/users/${searchTerm}/playlists`, params);
 
       if (response.ok) {
         const data = await response.json();
-        setSearchResults(data);
+        setSearchResults(data.items);
         console.log(data);
       } else {
         console.error("Error fetching playlists:", response.statusText);
@@ -51,20 +44,23 @@ function HomePage() {
 
   return (
     <div className="container">
-      <h1>final project</h1>
-      <div className="">
         <input className="form-control" type="text" placeholder="Search"
                onChange={(e) => setSearchTerm(e.target.value)}/>
         <button className="btn btn-primary" onClick={search}>
           Go
         </button>
         <h3>Results</h3>
-        <pre>
-          {/*TODO display results*/}
-          {/*{searchResults}*/}
-        </pre>
-      </div>
+        <ul className="list-group">
+          {searchResults && searchResults.map((playlist) => (
+            <Link to='/details'>
+              <li className="list-group-item" key={playlist.id}>
+                name: {playlist.name} description: {playlist.description}
+              </li>
+            </Link>
+
+          ))}
+        </ul>
     </div>
   )
 }
-export default HomePage;
+export default SearchForUsersPlaylist;
