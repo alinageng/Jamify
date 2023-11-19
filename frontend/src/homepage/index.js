@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {CLIENT_ID, CLIENT_SECRET} from "../utils/tokens";
+import 'bootstrap/dist/css/bootstrap.css';
 
 function HomePage() {
   const [accessToken, setAccessToken] = useState("");
