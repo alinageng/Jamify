@@ -7,6 +7,7 @@ function UserRoutes(app) {
     const currentUser = await dao.findUserByCredentials(username, password);
     req.session["currentUser"] = currentUser;
     if (!currentUser) {
+      //TODO not send everything in current user like the password and _id
       res.status(403).send("Incorrect username or password");
     } else{
       res.json(currentUser)
