@@ -11,8 +11,6 @@ import {useDispatch, useSelector} from "react-redux";
  */
 function Home() {
 
-  const isLoggedIn = useSelector((state) => state.loginReducer.isLoggedIn);
-
 
   return (
     <div className="container">
@@ -26,22 +24,19 @@ function Home() {
           </Link>
 
           <nav>
-            {isLoggedIn ? (
               <Link to='/profile'>
                 <button type="button" className="btn btn-primary">
                   [insert profile pic]
                 </button>
               </Link>
-              ) : (
+
               <Link to='/login'>
                 <button type="button" className="btn btn-primary">
                   Login
                 </button>
               </Link>
-            )}
+
           </nav>
-
-
         </div>
       </div>
       <hr/>
