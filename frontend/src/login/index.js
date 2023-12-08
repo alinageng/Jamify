@@ -16,7 +16,7 @@ function SignIn() {
     try {
       const currentUser = await client.signIn(account);
       dispatch(setCurrentUser(currentUser));
-      navigate("/project/account");
+      navigate("/profile");
     } catch (error) {
       setError(error);
     }
@@ -40,7 +40,7 @@ function SignIn() {
       <button onClick={signIn} className="btn btn-primary">
         Sign In
       </button>
-      <Link to="/project/signup" className="btn btn-link">
+      <Link to="/signup" className="btn btn-link">
         Sign Up
       </Link>
     </div>
