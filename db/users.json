@@ -7,7 +7,7 @@
   "firstName": "alina",
   "lastName": "geng",
   "email": "alina@hotmail.com",
-  "role": "user",
+  "role": "USER",
   "spotify_username": "e5rzp1qn73rhrjt0fcntbkoa5"
 },
 {
@@ -19,6 +19,6 @@
   "firstName": "charli",
   "lastName": "xcx",
   "email": "charlixcx@example.com",
-  "role": "artist",
+  "role": "ARTIST",
   "spotify_id": "charli_xcx"
 }]
