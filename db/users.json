@@ -1,0 +1,24 @@
+[{
+  "_id": {
+    "$oid": "6573665803e9171678f0a5e6"
+  },
+  "username": "ageng",
+  "password": "bananas123",
+  "firstName": "alina",
+  "lastName": "geng",
+  "email": "alina@hotmail.com",
+  "role": "user",
+  "spotify_username": "e5rzp1qn73rhrjt0fcntbkoa5"
+},
+{
+  "_id": {
+    "$oid": "657366de03e9171678f0a5e8"
+  },
+  "username": "charlixcx",
+  "password": "applies123",
+  "firstName": "charli",
+  "lastName": "xcx",
+  "email": "charlixcx@example.com",
+  "role": "artist",
+  "spotify_id": "charli_xcx"
+}]
