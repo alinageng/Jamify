@@ -8,7 +8,7 @@ import session from "express-session";
 import PostsRoutes from "./posts/routes.js";
 
 mongoose.connect("mongodb://127.0.0.1:27017/alina");
-
+//TEST
 const app = express();
 app.use(
   cors({

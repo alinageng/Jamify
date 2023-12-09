@@ -21,4 +21,17 @@
   "email": "charlixcx@example.com",
   "role": "ARTIST",
   "spotify_id": "charli_xcx"
-}]
+},
+  {
+    "_id": {
+      "$oid": "6574d45ab9a1fe97290a5404"
+    },
+    "username": "egugsa",
+    "password": "apples123",
+    "firstName": "Eden",
+    "lastName": "Gugsa",
+    "email": "egg@me.com",
+    "role": "USER",
+    "spotify_id": "eden.g"
+  }
+]
