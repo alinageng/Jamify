@@ -1,71 +1,61 @@
-import {useEffect, useState} from "react";
-import {getAccessToken} from "../utils/getAccessToken";
-import {CLIENT_ID, CLIENT_SECRET} from "../utils/tokens";
+import React, { useState } from "react";
+import {getUsersPlaylists, getSearchResults} from "../utils/spotify-service";
+import {useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 
 function SearchForMusic() {
-  const [accessToken, setAccessToken] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
-//replace(/ /g, '+');
-  useEffect(() => {
-    getAccessToken(CLIENT_ID, CLIENT_SECRET).
-    then((token) => setAccessToken(token));
-  }, [])
+  const [results, setResults] = useState([]);
+  const { accessToken } = useSelector((state) => state.accessToken);
 
-  async function search() {
-    if (!accessToken) {
-      console.error("Access token not available");
-      return;
-    }
-
-    const params = {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${accessToken}`
-      }
-    };
+  const callGetUsersPlaylists = async () => {
     try {
-      console.log(accessToken);
-      const response = await fetch(`https://api.spotify.com/v1/search?q=taylor+swift&type=album%2Cplaylist%2Ctrack`, params);
-
-      if (response.ok) {
-        const data = await response.json();
-        setSearchResults(data.items);
-        console.log(data);
-      } else {
-        console.error("Error fetching playlists:", response.statusText);
-      }
+      const response = await getUsersPlaylists(searchTerm, accessToken);
+      setResults(response);
     } catch (error) {
-      console.error("Error fetching playlists:", error);
+      console.error("Error fetching results:", error);
     }
-  }
+  };
 
-  useEffect(() => {
-    search();
-  }, [searchResults]);
+  const callSearchSpotify = async () => {
+    try {
+      const response = await getSearchResults(searchTerm, accessToken);
+      setResults(response);
+    } catch (error) {
+      console.error("Error fetching results:", error);
+    }
+  };
 
   return (
     <div className="container">
-        <input className="form-control" type="text" placeholder="Search"
-               onChange={(e) => setSearchTerm(e.target.value)}/>
-        <button className="btn btn-primary" onClick={search}>
-          Go
-        </button>
-        <h3>Results</h3>
-        {JSON.stringify(searchResults)}
-        {/*<ul className="list-group">*/}
-        {/*  {searchResults && searchResults.map((playlist) => (*/}
-        {/*    <Link to='/details'>*/}
-        {/*      <li className="list-group-item" key={playlist.id}>*/}
-        {/*        name: {playlist.name} description: {playlist.description}*/}
-        {/*      </li>*/}
-        {/*    </Link>*/}
-
-        {/*  ))}*/}
-        {/*</ul>*/}
+      <input
+        className="form-control"
+        type="text"
+        placeholder="Search"
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+      {/*<button className="btn btn-primary" onClick={callGetUsersPlaylists}>*/}
+      {/*  Get Users Playlists*/}
+      {/*</button>*/}
+      <button className="btn btn-primary" onClick={callSearchSpotify}>
+        Search Spotify
+      </button>
+      <h3>Results</h3>
+      {/*{JSON.stringify(results)}*/}
+      {results &&
+        results.tracks &&
+        results.albums.items &&
+        results.albums.items.length > 0 &&
+        results.albums.items.map((art) => (
+          <div key={art.id}>
+            <Link to={`/details/${art.id}`}>
+              <img src={art.images[1].url} />
+              <h2>{art.name}</h2>
+            </Link>
+          </div>
+        ))}
     </div>
-  )
+  );
 }
+
 export default SearchForMusic;

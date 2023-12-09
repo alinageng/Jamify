@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
  * TODO
  * 1. keep track if user is logged in or not
  * if logged in: redirect to profile
- * if not: redirect to login in page
+ * if not: redirect to users in page
  */
 function Home() {
 

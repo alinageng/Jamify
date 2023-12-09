@@ -20,8 +20,6 @@ const userSlice = createSlice({
       state.lastName = temp.lastName;
       state.username = temp.username;
       state.id = temp._id;
-      console.log("Id is ", state.id);
-
     },
   },
 });
