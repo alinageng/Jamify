@@ -43,7 +43,7 @@ function SearchForMusic() {
       <h3>Results</h3>
       {/*{JSON.stringify(results)}*/}
       {results &&
-        results.tracks &&
+        results.albums &&
         results.albums.items &&
         results.albums.items.length > 0 &&
         results.albums.items.map((art) => (

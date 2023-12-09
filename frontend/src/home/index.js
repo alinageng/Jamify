@@ -1,6 +1,9 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
+import {useEffect, useState} from "react";
+import {getAllPosts} from "./client";
+import {getTrackDetails} from "../utils/spotify-service";
 
 
 /**
@@ -11,6 +14,20 @@ import {useDispatch, useSelector} from "react-redux";
  */
 function Home() {
 
+  const [posts, setPosts] = useState();
+
+  const callGetAllPosts = async () => {
+    try {
+      const response = await getAllPosts();
+      setPosts(response);
+    } catch (error) {
+      console.error("Error fetching results:", error);
+    }
+  };
+
+  useEffect(() => {
+    callGetAllPosts();
+  },[])
 
   return (
     <div className="container">
@@ -35,11 +52,15 @@ function Home() {
                   Login
                 </button>
               </Link>
-
           </nav>
         </div>
       </div>
       <hr/>
+
+      <div>
+        {posts && JSON.stringify(posts)}
+
+      </div>
 
     </div>
   )
