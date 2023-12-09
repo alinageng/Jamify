@@ -21,7 +21,7 @@ function App() {
             <Route path="/search" element={<Search/>}/>
             <Route path="/login" element={<Login/>}/>
             <Route path="/profile" element={<Profile/>}/>
-            <Route path="/details/:id" element={<Details/>}/>
+            <Route path="/details" element={<Details/>}/>
           </Routes>
         </div>
       </HashRouter>

@@ -48,7 +48,7 @@ function SearchForMusic() {
         results.albums.items.length > 0 &&
         results.albums.items.map((art) => (
           <div key={art.id}>
-            <Link to={`/details/${art.id}`}>
+            <Link to={`/details?album_id=${art.id}`}>
               <img src={art.images[1].url} />
               <h2>{art.name}</h2>
             </Link>
