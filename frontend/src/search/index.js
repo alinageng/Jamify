@@ -8,11 +8,13 @@ import {Link} from "react-router-dom";
 
 function Search() {
   const [newPost, setNewPost] = useState();
+  const [tagged, setTagged] = useState();
   const navigate = useNavigate();
 
   const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState([]);
   const { accessToken } = useSelector((state) => state.accessToken);
+  const { currentUser } = useSelector((state) => state.user);
   const callSearchSpotify = async () => {
     try {
       const response = await getSearchResults(searchTerm, accessToken);
@@ -26,22 +28,30 @@ function Search() {
     setNewPost({ ... newPost, description: event.target.value});
   }
 
+  const isTagged = (id) => {
+    if (tagged) {
+      return tagged.spotifyId === id;
+    } else {
+      return false;
+    }
+  }
+
   const runSubmitNewPost = async () => {
+    console.log("currentUser");
+    console.log(currentUser);
     try {
-      const response = await submitNewPost(newPost);
-      navigate("/home");
+      const response = await submitNewPost({...newPost, author: currentUser._id, tagged: tagged});
+      if (response === 200) {
+        navigate("/home");
+      }
     } catch (error) {
       console.error("Error Posting", error); //TODO display this error like we do in signin
     }
   };
 
-  const tagThisItem = async ({createdBy, spotifyId, spotifyLink, releaseDate, imageLink, taggedItemType}) => {
-    setNewPost( { ...newPost, createdBy: createdBy, spotifyId: spotifyId, spotifyLink: spotifyLink, releaseDate: releaseDate, imageLink: imageLink, taggedItemType: taggedItemType});
-    // console.log("tagged a new item");
-    // console.log(newPost);
-    // console.log("CreatedBY " + createdBy);
-    // console.log("spotify id " + spotifyId);
-    // console.log("spotify link " + spotifyLink);
+  const tagThisItem = async ({createdBy, spotifyId, spotifyLink, releaseDate, imageLink, taggedItemType, title}) => {
+    setTagged( { ...tagged, createdBy: createdBy, spotifyId: spotifyId, spotifyLink: spotifyLink,
+      releaseDate: releaseDate, imageLink: imageLink, taggedItemType: taggedItemType, title: title});
   }
 
   return (
@@ -63,15 +73,15 @@ function Search() {
           Search Spotify
         </button>
         <h3>Results</h3>
-        {/*{JSON.stringify(results)}*/}
         {results &&
           results.albums &&
           results.albums.items &&
           results.albums.items.length > 0 &&
           <ul className="list-group">
             {results.albums.items.map((art) => (
-              <li className="list-group-item" key={art.id}>
-                <Link to={`/details?album_id=${art.id}`}>
+              <li className={`list-group-item ${isTagged(art.id) ? 'active' : ''}`} key={art.id}>
+
+              <Link to={`/details?album_id=${art.id}`}>
                   <img src={art.images[2].url} alt={art.name} />
                   <h2>{art.name}</h2>
                 </Link>
@@ -84,7 +94,8 @@ function Search() {
                     spotifyLink: art.href,
                     releaseDate: art.release_date,
                     imageLink: art.images[2].url,
-                    taggedItemType: "Album"
+                    taggedItemType: "Album",
+                    title: art.name
                   })}
                 >
                   Tag

@@ -5,16 +5,9 @@ import {useEffect, useState} from "react";
 import {getAllPosts} from "./client";
 import {getTrackDetails} from "../utils/spotify-service";
 
-
-/**
- * TODO
- * 1. keep track if user is logged in or not
- * if logged in: redirect to profile
- * if not: redirect to users in page
- */
 function Home() {
-
   const [posts, setPosts] = useState();
+  const { currentUser } = useSelector((state) => state.user);
 
   const callGetAllPosts = async () => {
     try {
@@ -34,25 +27,26 @@ function Home() {
       <h1>Home</h1>
       <div className="row">
         <div className="col">
-          <Link to='/search'>
-            <button type="button" className="btn btn-primary">
-              New Post
-            </button>
-          </Link>
-
-          <nav>
+          {currentUser?
+            <div>
+              <Link to='/search'>
+                <button type="button" className="btn btn-primary">
+                  New Post
+                </button>
+              </Link>
               <Link to='/profile'>
                 <button type="button" className="btn btn-primary">
                   [insert profile pic]
                 </button>
               </Link>
-
-              <Link to='/login'>
-                <button type="button" className="btn btn-primary">
-                  Login
-                </button>
-              </Link>
-          </nav>
+            </div>
+            :
+            <Link to='/login'>
+            <button type="button" className="btn btn-primary">
+            Login
+            </button>
+            </Link>
+          }
         </div>
       </div>
       <hr/>

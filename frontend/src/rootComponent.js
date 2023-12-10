@@ -14,14 +14,15 @@ function RootComponent({show, children}) {
     try {
       const currentUser = await client.account();
       dispatch(setCurrentUser(currentUser));
-      setLoading(false);
     } catch (error) {}
   };
+
   useEffect(() => {
     fetchCurrentUser();
     getAccessToken(CLIENT_ID, CLIENT_SECRET).then((token) => {
       dispatch(setAccessToken(token));
     });
+    setLoading(false);
     }, [dispatch]);
 
   return <div>{!loading && children}</div>;
