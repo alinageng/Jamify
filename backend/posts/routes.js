@@ -8,10 +8,11 @@ function PostsRoutes(app) {
   }
 
   const insertNewPost = async (req, res) => {
-    const {newPost} = req.body;
+    const newPost = req.body;
     const status = await dao.createNewPost(newPost);
-    console.log(allPosts);
+    console.log(newPost);
     res.json(status)
+    // res.json(status)
 
   }
 

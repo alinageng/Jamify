@@ -19,7 +19,7 @@ const schema = mongoose.Schema(
       artist: String,    // Only for Track and Album
       image: String,
     },
-  }
+  }, { versionKey: false }
 )
 
 export default schema;
