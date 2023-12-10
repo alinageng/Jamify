@@ -20,7 +20,7 @@ export const getUsersPlaylists = async (userId, accessToken) => {
 
 export const getSearchResults = async (searchTerm, accessToken) => {
   try {
-    const response = await axios.get(`${SPOTIFY_API}/search?q=${searchTerm}&type=album%2Ctrack`, {
+    const response = await axios.get(`${SPOTIFY_API}/search?q=${searchTerm}&type=album%2Ctrack&limit=5`, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${accessToken}`
@@ -33,9 +33,9 @@ export const getSearchResults = async (searchTerm, accessToken) => {
   }
 };
 
-export const getTrackDetails = async (id, accessToken) => {
+export const getTrackDetails = async (id, accessToken, itemType) => {
   try {
-    const response = await axios.get(`${SPOTIFY_API}/albums/${id}`, {
+    const response = await axios.get(`${SPOTIFY_API}/${itemType}/${id}`, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${accessToken}`

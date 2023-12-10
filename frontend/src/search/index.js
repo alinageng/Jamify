@@ -1,47 +1,25 @@
-import SearchForMusic from "./searchForMusic";
-import {getAllPosts, submitNewPost} from "../home/client";
+import {submitNewPost} from "../home/client";
 import {useNavigate} from "react-router";
-import React, {useState} from "react";
-import {useSelector} from "react-redux";
-import {getSearchResults} from "../utils/spotify-service";
-import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import DisplaySearchResults from "./displaySearchResults";
+import {clearDescription, clearResults, clearSearchTerm, clearTaggedItem, setDescription} from "./taggedItemReducer";
 
 function Search() {
-  const [newPost, setNewPost] = useState();
-  const [tagged, setTagged] = useState();
   const navigate = useNavigate();
-
-  const [searchTerm, setSearchTerm] = useState("");
-  const [results, setResults] = useState([]);
-  const { accessToken } = useSelector((state) => state.accessToken);
+  const dispatch = useDispatch();
+  const { taggedItem, description } = useSelector((state) => state.taggedItem);
   const { currentUser } = useSelector((state) => state.user);
-  const callSearchSpotify = async () => {
-    try {
-      const response = await getSearchResults(searchTerm, accessToken);
-      setResults(response);
-    } catch (error) {
-      console.error("Error fetching results:", error);
-    }
-  };
-
-  const updateDescription = (event) => {
-    setNewPost({ ... newPost, description: event.target.value});
-  }
-
-  const isTagged = (id) => {
-    if (tagged) {
-      return tagged.spotifyId === id;
-    } else {
-      return false;
-    }
-  }
 
   const runSubmitNewPost = async () => {
     console.log("currentUser");
     console.log(currentUser);
     try {
-      const response = await submitNewPost({...newPost, author: currentUser._id, tagged: tagged});
+      const response = await submitNewPost({description: description, author: currentUser._id, tagged: taggedItem});
       if (response === 200) {
+        dispatch(clearDescription())
+        dispatch(clearResults())
+        dispatch(clearTaggedItem())
+        dispatch(clearSearchTerm())
         navigate("/home");
       }
     } catch (error) {
@@ -49,62 +27,19 @@ function Search() {
     }
   };
 
-  const tagThisItem = async ({createdBy, spotifyId, spotifyLink, releaseDate, imageLink, taggedItemType, title}) => {
-    setTagged( { ...tagged, createdBy: createdBy, spotifyId: spotifyId, spotifyLink: spotifyLink,
-      releaseDate: releaseDate, imageLink: imageLink, taggedItemType: taggedItemType, title: title});
-  }
+  const handleDescriptionChange = (event) => {
+    const { value } = event.target;
+    dispatch(setDescription(value));
+  };
 
   return (
     <div className="container">
       <h1>New Post</h1>
       <div className="form-group">
         <label htmlFor="Description">Write Description</label>
-        <textarea className="form-control" id="Description" rows="3" onChange={updateDescription}></textarea>
+        <textarea className="form-control" id="Description" rows="3" value={description} onChange={handleDescriptionChange}></textarea>
       </div>
-      <h2>Search For Music To Tag</h2>
-      <div className="container">
-        <input
-          className="form-control"
-          type="text"
-          placeholder="Search"
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <button className="btn btn-primary" onClick={callSearchSpotify}>
-          Search Spotify
-        </button>
-        <h3>Results</h3>
-        {results &&
-          results.albums &&
-          results.albums.items &&
-          results.albums.items.length > 0 &&
-          <ul className="list-group">
-            {results.albums.items.map((art) => (
-              <li className={`list-group-item ${isTagged(art.id) ? 'active' : ''}`} key={art.id}>
-
-              <Link to={`/details?album_id=${art.id}`}>
-                  <img src={art.images[2].url} alt={art.name} />
-                  <h2>{art.name}</h2>
-                </Link>
-                <button
-                  className="btn btn-primary float-end"
-                  type="button"
-                  onClick={() => tagThisItem({
-                    createdBy: art.artists[0].name,
-                    spotifyId: art.id,
-                    spotifyLink: art.href,
-                    releaseDate: art.release_date,
-                    imageLink: art.images[2].url,
-                    taggedItemType: "Album",
-                    title: art.name
-                  })}
-                >
-                  Tag
-                </button>
-              </li>
-            ))}
-          </ul>
-          }
-      </div>
+      <DisplaySearchResults/>
       <button className="btn btn-primary float-end" type="submit" onClick={runSubmitNewPost}>Post</button>
     </div>
     )

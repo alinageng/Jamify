@@ -6,15 +6,29 @@ function Details() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const albumId = searchParams.get('album_id');
+  const trackId = searchParams.get('track_id');
+  const playlistId = searchParams.get('playlist_id');
   const [details, setDetails] = useState(null);
+  const [itemType, setItemType] = useState();
   const { accessToken } = useSelector((state) => state.accessToken);
 
   const callSearchSpotify = async () => {
     try {
-      console.log("location: " + searchParams)
-      console.log("album_id: " + albumId)
-      const response = await getTrackDetails(albumId, accessToken);
-      setDetails(response);
+      if (albumId) {
+        const response = await getTrackDetails(albumId, accessToken, "albums");
+        setDetails(response);
+        setItemType("Album");
+      }
+      else if (trackId) {
+        const response = await getTrackDetails(trackId, accessToken, "tracks");
+        setDetails(response);
+        setItemType("Track");
+      }
+      else if (playlistId) {
+        const response = await getTrackDetails(playlistId, accessToken, "playlists");
+        setDetails(response);
+        setItemType("Playlist");
+      }
     } catch (error) {
       console.error("Error fetching results:", error);
     }
@@ -26,11 +40,12 @@ function Details() {
 
   return (
     <div className="container">
-      <h1>
-        Details
-      </h1>
-      {details &&
+
+      {details && itemType === "Album" &&
         <div>
+          <h1>
+            Album Details
+          </h1>
           <h2>
             {details.name}
           </h2>
@@ -40,6 +55,23 @@ function Details() {
           </h2>
           <h2>
             artist: {details.artists[0].name}
+          </h2>
+        </div>
+      }
+      {details && itemType === "Track" &&
+        <div>
+          <h1>
+            Track Details
+          </h1>
+          <h2>
+            {details.name}
+          </h2>
+          <img src={details.album.images[1].url} />
+          <h2>
+            released: {details.album.release_date}
+          </h2>
+          <h2>
+            artist: {details.album.artists[0].name}
           </h2>
         </div>
       }
