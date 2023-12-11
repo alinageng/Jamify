@@ -20,3 +20,12 @@ export const submitNewPost = async (newPost) => {
   const response = await request.post(`${POSTS_API}`, newPost);
   return response.data;
 }
+
+export const getPostsComments = async (postId) => {
+  const response = await request.get(`${POSTS_API}/${postId}/comments`)
+  return response;
+}
+
+export const submitNewComment = async (newComment) => {
+  const response = await request.get(`${API_URL}/comments`, newComment)
+}

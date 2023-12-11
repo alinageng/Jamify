@@ -52,7 +52,6 @@ function DisplaySearchResults() {
       {results && results.albums && (
         <DisplayAlbumResults albums={results.albums} />
       )}
-
       {results && results.tracks && (
         <DisplayTrackResults tracks={results.tracks} />
       )}

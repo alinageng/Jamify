@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {getAllPosts} from "./client";
 import {getTrackDetails} from "../utils/spotify-service";
+import DisplayPostsList from "../postLists/DisplayPostsList";
 
 function Home() {
   const [posts, setPosts] = useState();
@@ -52,8 +53,7 @@ function Home() {
       <hr/>
 
       <div>
-        {posts && JSON.stringify(posts)}
-
+        {posts && <DisplayPostsList posts={posts}/>}
       </div>
 
     </div>

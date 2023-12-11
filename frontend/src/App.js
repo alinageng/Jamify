@@ -10,13 +10,14 @@ import {Provider} from "react-redux";
 import store from "./store"
 import RootComponent from "./rootComponent";
 import Navigation from "./Navigation";
+import PostDetails from "./postLists/postDetails";
 
 function App() {
   return (
     <Provider store={store}>
       <RootComponent show={true}>
-        <Navigation/>
         <HashRouter>
+          <Navigation/>
           <div>
             <Routes>
               <Route path="/" element={<Navigate to="home"/>}/>
@@ -25,6 +26,7 @@ function App() {
               <Route path="/login" element={<Login/>}/>
               <Route path="/profile" element={<Profile/>}/>
               <Route path="/details" element={<Details/>}/>
+              <Route path="/post/:postId" element={<PostDetails/>}/>
             </Routes>
           </div>
         </HashRouter>

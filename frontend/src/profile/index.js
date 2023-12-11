@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import React from "react";
-import PostLists from "../postLists/PostLists";
+import DisplayUserPosts from "../postLists/DisplayUserPosts";
 
 // TODO followers and following and posts
 function Profile() {
@@ -35,7 +35,7 @@ function Profile() {
         </div>
       </div>
       <div className="mt-4">
-        <PostLists userId={id}/>
+        <DisplayUserPosts userId={id}/>
       </div>
     </div>
   )
