@@ -2,7 +2,8 @@ import * as dao from "./dao.js";
 
 function CommentsRoutes(app) {
   const getPostsComments = async (req, res) => {
-    const { postId } = req.body;
+    const postId = req.params.postId;
+
     const comments = await dao.findCommentsByPostId(postId);
     res.json(comments)
   }
@@ -13,7 +14,7 @@ function CommentsRoutes(app) {
     res.json(200)
   }
 
-  app.get("/api/comments", getPostsComments)
+  app.get("/api/posts/:postId/comments", getPostsComments)
   app.post("/api/comments", insertNewComment)
 }
 
