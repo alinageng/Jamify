@@ -13,8 +13,15 @@ function PostsRoutes(app) {
     res.json(200)
   }
 
+  const getPostById = async (req, res) => {
+    const postId = req.params.postId;
+    const post = await dao.findPostByPostId(postId);
+    res.json(post)
+  }
+
   app.get("/api/posts", getAllPosts)
   app.post("/api/posts", insertNewPost)
+  app.get("/api/posts/:postId", getPostById)
 }
 
 export default PostsRoutes;
