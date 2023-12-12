@@ -11,6 +11,7 @@ function Home() {
   const { currentUser } = useSelector((state) => state.user);
 
   const callGetAllPosts = async () => {
+    console.log(currentUser);
     try {
       const response = await getAllPosts();
       setPosts(response);
@@ -18,6 +19,8 @@ function Home() {
       console.error("Error fetching results:", error);
     }
   };
+
+
 
   useEffect(() => {
     callGetAllPosts();

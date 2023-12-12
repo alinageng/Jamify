@@ -1,10 +1,21 @@
 import { useSelector } from "react-redux";
 import React from "react";
+import { useNavigate, Link, useParams } from "react-router-dom";
 import DisplayUserPosts from "../postLists/DisplayUserPosts";
+// import {signout} from "../users/client";
+import * as client from "../users/client";
+
 
 // TODO followers and following and posts
 function Profile() {
   const { firstName, lastName, username, id } = useSelector((state) => state.user);
+  const navigate = useNavigate();
+
+  const signout = async () => {
+    await client.signout();
+    navigate("../../home");
+    window.location.reload(false);
+  };
 
   return (
     <div className="container">
@@ -18,7 +29,7 @@ function Profile() {
           <button  className="btn btn-primary float-end">
             Edit Profile
           </button>
-          <button className="btn btn-primary float-end">
+          <button className="btn btn-primary float-end" onClick={signout}>
             Logout
           </button>
         </div>

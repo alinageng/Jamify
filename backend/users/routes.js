@@ -13,14 +13,23 @@ function UserRoutes(app) {
       res.json(currentUser)
     }
   }
+
   const account = (req, res) => {
     const currentUser = req.session["currentUser"];
     res.json(currentUser);
   };
 
+  const signout = (req, res) => {
+    console.log("signout in route: ")
+    // console.log("signout set null: " +currentUser)
+    req.session.destroy();
+    res.json(200);
+  };
+
 
   app.post("/api/users/signin", signin)
   app.post("/api/users/account", account)
+  app.post("/api/users/signout", signout)
 }
 
 export default UserRoutes;
