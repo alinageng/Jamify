@@ -5,3 +5,5 @@ export const createNewComment = (newComment) =>
 
 export const findCommentsByPostId = (postId) =>
   Comment.find({post: postId});
+
+

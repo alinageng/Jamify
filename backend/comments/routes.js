@@ -3,14 +3,13 @@ import * as dao from "./dao.js";
 function CommentsRoutes(app) {
   const getPostsComments = async (req, res) => {
     const postId = req.params.postId;
-
     const comments = await dao.findCommentsByPostId(postId);
     res.json(comments)
   }
 
   const insertNewComment = async (req, res) => {
-    const newPost = req.body;
-    const status = await dao.createNewComment(newPost);
+    const newComment = req.body;
+    const status = await dao.createNewComment(newComment);
     res.json(200)
   }
 

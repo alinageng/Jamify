@@ -7,3 +7,5 @@ export const findAllPosts = () =>
 export const createNewPost = (newPost) =>
   Post.create(newPost);
 
+export const findPostByPostId = (postId) =>
+  Post.findById(postId);

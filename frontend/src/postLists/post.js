@@ -4,11 +4,10 @@ import {getPostsComments} from "../home/client";
 
 function Post({post}) {
 
-
   return (
-    <li className="list-group-item">
+    <li className="list-group-item" >
       <Link to={`/profile?user_id=${post.author}`}>
-        <h6> @{post.author}</h6>
+        <h5> @{post.author}</h5>
       </Link>
       <h3> {post.description}</h3>
       {JSON.stringify(post.tagged)}
