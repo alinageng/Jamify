@@ -54,10 +54,18 @@ function PostDetails() {
       <h3>Comments</h3>
       <div className="row form-group">
         <div className="col-sm-10">
-          <input type="text" className="form-control" value={newComment} onChange={(e) => setNewComment(e.target.value)} id="newComentInput" placeholder="Add a new Comment"/>
+          {currentUser ?
+            <input type="text" className="form-control" value={newComment}
+                   onChange={(e) => setNewComment(e.target.value)}
+                   id="newComentInput" placeholder="Add a new Comment"/> :
+            <input type="text" className="form-control" value="Login to add a comment" readOnly />
+          }
         </div>
         <div className="col-sm-2">
-          <button className="btn btn-primary float-end" onClick={handlePostNewComment}>Post</button>
+          {currentUser ?
+            <button className="btn btn-primary float-end" onClick={handlePostNewComment}>Post</button> :
+            <button className="btn btn-primary float-end" disabled onClick={handlePostNewComment}>Post</button>
+          }
         </div>
       </div>
 
