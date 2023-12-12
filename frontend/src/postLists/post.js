@@ -8,7 +8,7 @@ function Post({post}) {
   return (
     <li className="list-group-item">
       <Link to={`/profile?user_id=${post.author}`}>
-        <h7> @{post.author}</h7>
+        <h6> @{post.author}</h6>
       </Link>
       <h3> {post.description}</h3>
       {JSON.stringify(post.tagged)}
