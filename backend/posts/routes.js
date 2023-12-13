@@ -19,7 +19,14 @@ function PostsRoutes(app) {
     res.json(post)
   }
 
+  const getAllPostsWrittenByUser = async (req, res) => {
+    const userId = req.params.userId;
+    const posts = await dao.findPostsByUserId(userId);
+    res.json(posts);
+  }
+
   app.get("/api/posts", getAllPosts)
+  app.get("/api/posts/by/:userId", getAllPostsWrittenByUser)
   app.post("/api/posts", insertNewPost)
   app.get("/api/posts/:postId", getPostById)
 }
