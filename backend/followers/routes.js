@@ -1,5 +1,6 @@
 import * as dao from "./dao.js";
 import {findUsersFollowers, findUsersFollowing} from "./dao.js";
+import {Follow} from "./model.js";
 
 function FollowsRoutes(app) {
 
@@ -29,7 +30,7 @@ function FollowsRoutes(app) {
 
 
   const removeFollow = async (req, res) => {
-    const {followedId, followerId } = req.body;
+    const {followedId, followerId } = req.params;
     const status = await dao.unfollow(followedId, followerId);
     res.json(200);
   }
@@ -40,12 +41,22 @@ function FollowsRoutes(app) {
     res.json(response);
   }
 
+  // todo refactor the findone into dao.
+  const doesFollowingExist = async (req, res) => {
+    const {followedId, followerId } = req.params;
+
+      const existingFollow = await Follow.findOne({ followedId: followedId, followerId: followerId });
+      const exists = !!existingFollow; // Convert to boolean
+      res.json(exists);
+  };
+
   app.get("/api/follow/:userId/num_followers", getNumFollowers);
   app.get("/api/follow/:userId/num_following", getNumFollowing);
   app.get("/api/follow/:userId/followers", getFollowers);
   app.get("/api/follow/:userId/following", getFollowing);
+  app.get("/api/follow/:followedId/:followerId", doesFollowingExist);
   app.post("/api/follow", createFollow);
-  app.delete("/api/follow", removeFollow);
+  app.delete("/api/follow/:followedId/:followerId", removeFollow);
 }
 
 export default FollowsRoutes;
