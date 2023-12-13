@@ -34,6 +34,12 @@ export const signup = async (credentials) => {
   return response.data;
 };
 
+export const updateUserInfo = async (userId, userInfo) => {
+  const response = await axios.post(
+    `${USER_API}/${userId}`, userInfo);
+  return response.data;
+};
+
 export const getNumFollowers = async(userId) => {
   const response = await request.get(`${FOLLOW_API}/${userId}/num_followers`)
   return response.data;

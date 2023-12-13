@@ -4,10 +4,7 @@ import { useNavigate, Link, useParams } from "react-router-dom";
 import DisplayUserPosts from "../postLists/DisplayUserPosts";
 import * as client from "../users/client";
 import "./profile.css";
-import {getUserInfo} from "../users/client";
 
-
-// TODO followers and following and posts
 function Profile() {
   const {userId} = useParams();
   const [userInfo, setUserInfo] = useState();
@@ -86,6 +83,10 @@ function Profile() {
     }
   }
 
+  const handleEditProfile = async () => {
+    navigate("edit-profile")
+  }
+
   return (
     <div className="container">
       {currentUser && <button className="btn btn-primary float-end" onClick={signout}>
@@ -99,22 +100,23 @@ function Profile() {
           <div className="row">
             <div className="col">
               <div className={"nameText"}>{userInfo.firstName} {userInfo.lastName}</div>
-
             </div>
             <div className="col">
               {currentUser?
                 isMyProfile?
-                  <button  className="btn btn-primary float-end">
+                  <button className="btn btn-primary float-end" onClick={handleEditProfile}>
                     Edit Profile
                   </button> :
                   isFollowing ?
-                    <button  className="btn btn-primary float-end" onClick={handleUnfollow}>
+                    <button className="btn btn-primary float-end" onClick={handleUnfollow}>
                       unfollow
-                    </button> :
-                    <button  className="btn btn-primary float-end" onClick={handleFollow}>
+                    </button>
+                    :
+                    <button className="btn btn-primary float-end" onClick={handleFollow}>
                       follow
                     </button>
-                : <Link to='/login'>
+                :
+                <Link to='/login'>
                     <button type="button" className="btn btn-primary float-end">
                       Login to follow
                     </button>

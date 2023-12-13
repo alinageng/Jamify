@@ -13,6 +13,7 @@ import Navigation from "./Navigation";
 import PostDetails from "./postLists/postDetails";
 import Follow from "./profile/follow";
 import Signup from './users/signup';
+import EditProfile from "./profile/editProfile";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
               <Route path="/search" element={<Search/>}/>
               <Route path="/login" element={<Login/>}/>
               <Route path="/profile/:userId" element={<Profile/>}/>
+              <Route path="/profile/:userId/edit-profile" element={<EditProfile/>}/>
               <Route path="/profile/:userId/:followType" element={<Follow/>}/>
               <Route path="/signup" element={<Signup/>}/>
               <Route path="/details" element={<Details/>}/>
