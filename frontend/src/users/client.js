@@ -24,3 +24,9 @@ export const account = async () => {
   const response = await request.post(`${USER_API}/account`);
   return response.data;
 };
+
+export const signup = async (credentials) => {
+  const response = await axios.post(
+    `${USER_API}/signup`, credentials);
+  return response.data;
+};

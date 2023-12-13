@@ -11,6 +11,7 @@ import store from "./store"
 import RootComponent from "./rootComponent";
 import Navigation from "./Navigation";
 import PostDetails from "./postLists/postDetails";
+import Signup from './users/signup';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
               <Route path="/home" element={<Home/>}/>
               <Route path="/search" element={<Search/>}/>
               <Route path="/login" element={<Login/>}/>
+              <Route path="/signup" element={<Signup/>}/>
               <Route path="/profile" element={<Profile/>}/>
               <Route path="/details" element={<Details/>}/>
               <Route path="/post/:postId" element={<PostDetails/>}/>
