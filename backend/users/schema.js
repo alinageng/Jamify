@@ -13,6 +13,7 @@ const schema = mongoose.Schema(
       enum: ["USER", "ARTIST", "ADMIN"],
     },
   },
-  { collection: "users" }
+  { collection: "users" },
+  { versionKey: false }
 );
 export default schema;
