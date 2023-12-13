@@ -10,8 +10,6 @@ export const findUsersFollowing = (userId) =>
   Follow.find({followerId: userId});
 
 export const findFollow = (followedId, followerId) => {
-  // const res = Follow.exists({followedId: followedId})
-  // console.log("findFollow: ", res);
   Follow.findOne({ followedId: followedId, followerId: followerId });
 }
 

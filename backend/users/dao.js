@@ -5,6 +5,10 @@ export const findUserByCredentials = (username, password) =>
 
 export const findUserById = (userId) =>
   model.findById(userId).select({"password": 0, "email": 0});
+
+export const updateUserById = (userId, userInfo) =>
+  model.findByIdAndUpdate(userId, userInfo, { new: true });
+
 export const createUser = (user) => model.create(user);
 
 export const findUserByUsername = (username) => model.findOne({ username: username });
