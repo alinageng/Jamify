@@ -1,7 +1,10 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {getPostById, getPostsComments, submitNewComment} from "../home/client";
 import {Link, useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
+import TaggedItem from "../taggedItem";
+import './postDetails.css';
+import Post from "./post";
 
 
 function PostDetails() {
@@ -39,19 +42,16 @@ function PostDetails() {
     getPost();
   }, [postId]);
 
-
   return (
     <div className="container">
       {post ?
-      <div>
-        <h3>@{post.author}</h3>
-        <h4>{post.description}</h4>
-        <h4>{JSON.stringify(post.tagged)}</h4>
-      </div> :
+        <div className="border rounded p-3 mt-4">
+          <Post key={post._id} post={post} showCommentsLink={false}/>
+        </div> :
         <h4>loading...</h4>
       }
 
-      <h3>Comments</h3>
+      <h3 className="mt-4">Comments</h3>
       <div className="row form-group">
         <div className="col-sm-10">
           {currentUser ?
@@ -71,14 +71,21 @@ function PostDetails() {
 
       {comments?
         comments.length === 0 ?
-          <h5>no comments yet</h5> :
+          <h5 className="mt-2">no comments yet</h5> :
           <ul className="list-group mt-2">
             {comments.map((comment) => (
-              <li className="list-group-item">
-                <Link to={`/profile/${comment.author}`}>
-                  <h5>@{comment.authorUsername}</h5>
-                </Link>
-                <text>{comment.description}</text>
+              <li className="list-group-item" key={comment._id}>
+                <div className={"row"}>
+                  <div className={"col-10"}>
+                    <Link to={`/profile/${comment.author}`}>
+                      <div className={"commentUsername"}>@{comment.authorUsername}</div>
+                    </Link>
+                  </div>
+                  <div className={"col-2"}>
+                    <div className={"float-end"}>{new Date(comment.datePosted).toLocaleDateString()}</div>
+                  </div>
+                </div>
+                <div className={"commentDescription"}>{comment.description}</div>
               </li>
               ))}
           </ul> :

@@ -11,10 +11,9 @@ function Search() {
   const { currentUser } = useSelector((state) => state.user);
 
   const runSubmitNewPost = async () => {
-    console.log("currentUser");
-    console.log(currentUser);
     try {
-      const response = await submitNewPost({description: description, author: currentUser._id, tagged: taggedItem});
+      const response = await submitNewPost({description: description, authorUsername: currentUser.username,
+        authorId: currentUser._id, tagged: taggedItem});
       if (response === 200) {
         dispatch(clearDescription())
         dispatch(clearResults())
