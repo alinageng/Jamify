@@ -35,3 +35,8 @@ export const getPostById = async (postId) => {
   const response = await request.get(`${POSTS_API}/${postId}`)
   return response;
 }
+
+export const getPostsByUserId = async (userId) => {
+  const response = await request.get(`${POSTS_API}/by/${userId}`)
+  return response;
+}

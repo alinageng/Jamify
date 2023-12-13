@@ -9,3 +9,6 @@ export const createNewPost = (newPost) =>
 
 export const findPostByPostId = (postId) =>
   Post.findById(postId);
+
+export const findPostsByUserId = (userId) =>
+  Post.find({authorId: userId}).sort({createdAt: -1}).exec();
