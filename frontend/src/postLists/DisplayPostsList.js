@@ -8,7 +8,9 @@ function DisplayPostsList({posts}) {
   return (
     <ul className="list-group">
       {posts.map((post) =>
-          <Post key={post._id} post={post}/>
+        <li className="list-group-item">
+          <Post key={post._id} post={post} showCommentsLink={true}/>
+        </li>
       )}
     </ul>
 

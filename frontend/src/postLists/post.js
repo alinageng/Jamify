@@ -1,21 +1,31 @@
 import {Link} from "react-router-dom";
-import React, {useEffect, useState} from "react";
-import {getPostsComments} from "../home/client";
+import TaggedItem from "../taggedItem";
+import './post.css';
 
-function Post({post}) {
+function Post({post, showCommentsLink}) {
 
   return (
-    <li className="list-group-item" >
-      <Link to={`/profile?user_id=${post.author}`}>
-        <h5> @{post.author}</h5>
-      </Link>
-      <h3> {post.description}</h3>
-      {JSON.stringify(post.tagged)}
-      <h3>Comments</h3>
-      <Link to={`/post/${post._id}`}>
-        <h4>view comments</h4>
-      </Link>
-    </li>
+    <div>
+      <div className={"row"}>
+        <div className={"col-10"}>
+          <Link to={`/profile/${post.authorId}`} >
+            @{post.authorUsername}
+          </Link>
+        </div>
+        <div className={"col-2"}>
+          <div className={"float-end"}>{new Date(post.datePosted).toLocaleDateString()}</div>
+        </div>
+
+      </div>
+
+      <h4> {post.description}</h4>
+      <TaggedItem taggedItem={post.tagged}/>
+      {showCommentsLink &&
+        <Link to={`/post/${post._id}`}>
+          <h5 className="mt-2">View comments</h5>
+        </Link>
+      }
+    </div>
   )
 }
 export default Post;
