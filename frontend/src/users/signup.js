@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as client from "./client";
+import { setCurrentUser } from "./userReducer";
+import { useDispatch } from "react-redux";
+
 function Signup() {
   const [error, setError] = useState("");
+  const dispatch = useDispatch();
   const [credentials, setCredentials] = useState({
     username: "", 
     password: "",  
@@ -15,12 +19,12 @@ function Signup() {
   const navigate = useNavigate();
   const signup = async () => {
     try {
-      await client.signup(credentials);
-      navigate("/profile/");
-    } catch (err) {
-        console.log(err)
-    //   setError(err.response.data.message);
-    }
+        const currentUser = await client.signup(credentials);
+        dispatch(setCurrentUser(currentUser));
+        navigate(`/profile/${currentUser._id}`);
+      } catch (error) {
+        setError(error);
+      }
   }
   const handleRoleChange = (e) => {
     setCredentials({
