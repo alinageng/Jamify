@@ -26,7 +26,6 @@ function UserRoutes(app) {
   const getUserInfo = async (req, res) => {
     const userId = req.params.userId;
     const response = await dao.findUserById(userId);
-    console.log("userinfo: ", response);
     res.json(response);
   }
 

@@ -2,14 +2,22 @@ import mongoose from "mongoose";
 
 const schema = mongoose.Schema(
   {
-    followed: {
+    followedId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'users',
       required: true
     },
-    follower: {
+    followedUsername: {
+      type: String,
+      required: true
+    },
+    followerId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'users',
+      required: true
+    },
+    followerUsername: {
+      type: String,
       required: true
     },
   }, {versionKey: false}
