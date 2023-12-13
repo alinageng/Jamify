@@ -2,19 +2,22 @@ import 'bootstrap/dist/css/bootstrap.css';
 import {Link} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {getAllPosts} from "./client";
 import DisplayPostsList from "../postLists/DisplayPostsList";
+import * as client from "./client";
+import {getUsersHomepagePosts} from "./client";
 
 function Home() {
   const [posts, setPosts] = useState();
   const { currentUser } = useSelector((state) => state.user);
 
   const callGetAllPosts = async () => {
-    try {
-      const response = await getAllPosts();
+    if (currentUser) {
+      const response = await getUsersHomepagePosts(currentUser._id);
+      setPosts(response)
+    }
+    else {
+      const response = await client.getAllPosts();
       setPosts(response);
-    } catch (error) {
-      console.error("Error fetching results:", error);
     }
   };
 
@@ -50,11 +53,9 @@ function Home() {
         </div>
       </div>
       <hr/>
-
       <div>
         {posts && <DisplayPostsList posts={posts}/>}
       </div>
-
     </div>
   )
 }

@@ -4,6 +4,7 @@ function PostsRoutes(app) {
   const getAllPosts = async (req, res) => {
     const {username, password} = req.body;
     const allPosts = await dao.findAllPosts();
+    console.log("allPosts: ", allPosts);
     res.json(allPosts)
   }
 
@@ -25,8 +26,15 @@ function PostsRoutes(app) {
     res.json(posts);
   }
 
+  const getUsersHomepagePosts = async (req, res) => {
+    const userId = req.params.userId;
+    const posts = await dao.findPostsForUsersHomepage(userId);
+    res.json(posts);
+  }
+
   app.get("/api/posts", getAllPosts)
   app.get("/api/posts/by/:userId", getAllPostsWrittenByUser)
+  app.get("/api/posts/homepage/:userId", getUsersHomepagePosts)
   app.post("/api/posts", insertNewPost)
   app.get("/api/posts/:postId", getPostById)
 }
