@@ -9,7 +9,10 @@ import PostsRoutes from "./posts/routes.js";
 import CommentsRoutes from "./comments/routes.js";
 import FollowsRoutes from "./followers/routes.js";
 
-mongoose.connect("mongodb://127.0.0.1:27017/alina");
+// mongoose.connect("mongodb://127.0.0.1:27017/alina");
+const mongodb = process.env.MONGO_DB_URL;
+mongoose.connect(mongodb);
+
 //TEST
 const app = express();
 app.use(
