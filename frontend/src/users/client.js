@@ -47,3 +47,9 @@ export const getFollowing = async(userId) => {
   const response = await request.get(`${FOLLOW_API}/${userId}/following`)
   return response.data;
 }
+
+export const signup = async (credentials) => {
+  const response = await axios.post(
+    `${USER_API}/signup`, credentials);
+  return response.data;
+};

@@ -12,6 +12,7 @@ import RootComponent from "./rootComponent";
 import Navigation from "./Navigation";
 import PostDetails from "./postLists/postDetails";
 import Follow from "./profile/follow";
+import Signup from './users/signup';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
               <Route path="/login" element={<Login/>}/>
               <Route path="/profile/:userId" element={<Profile/>}/>
               <Route path="/profile/:userId/:followType" element={<Follow/>}/>
+              <Route path="/signup" element={<Signup/>}/>
               <Route path="/details" element={<Details/>}/>
               <Route path="/post/:postId" element={<PostDetails/>}/>
             </Routes>

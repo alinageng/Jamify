@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { setCurrentUser } from "./userReducer";
 import { useDispatch } from "react-redux";
+import Signup from "./signup";
 
 function SignIn() {
   const { currentUser } = useSelector((state) => state.user);
