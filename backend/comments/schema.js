@@ -2,16 +2,28 @@ import mongoose from "mongoose";
 
 const schema = mongoose.Schema(
   {
-    description: String,
+    description: {
+        type: String,
+        required: true
+    },
+    datePosted: {
+        type: Date,
+        default: Date.now,
+    },
     post: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'posts'
+        ref: 'posts',
+        required: true
     },
     author: {
-    type: mongoose.Schema.Types.ObjectId,
-      ref: 'users'
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'users',
+        required: true
     },
-    authorUsername: String
+    authorUsername: {
+        type: String,
+        required: true
+    },
   }, {versionKey: false}
 )
 export default schema;
