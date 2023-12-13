@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import React, {useEffect, useState} from "react";
 import { useNavigate, Link, useParams } from "react-router-dom";
 import DisplayUserPosts from "../postLists/DisplayUserPosts";
+
 import * as client from "../users/client";
 import "./profile.css";
 import {getUserInfo} from "../users/client";
@@ -23,7 +24,6 @@ function Profile() {
     navigate("../../home");
     window.location.reload(false);
   };
-
 
   const handleIsMyProfile = async () => {
     if (currentUser) { //if logged in
