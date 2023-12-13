@@ -8,7 +8,7 @@ function DisplayPostsList({posts}) {
   return (
     <ul className="list-group">
       {posts.map((post) =>
-        <Post post={post}/>)}
+        <Post key={post} post={post}/>)}
     </ul>
 
   )
