@@ -1,9 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import {Link} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {getAllPosts} from "./client";
-import {getTrackDetails} from "../utils/spotify-service";
 import DisplayPostsList from "../postLists/DisplayPostsList";
 
 function Home() {
@@ -11,7 +10,6 @@ function Home() {
   const { currentUser } = useSelector((state) => state.user);
 
   const callGetAllPosts = async () => {
-    console.log(currentUser);
     try {
       const response = await getAllPosts();
       setPosts(response);
@@ -19,8 +17,6 @@ function Home() {
       console.error("Error fetching results:", error);
     }
   };
-
-
 
   useEffect(() => {
     callGetAllPosts();
@@ -38,9 +34,9 @@ function Home() {
                   New Post
                 </button>
               </Link>
-              <Link to='/profile'>
+              <Link to={`/profile/${currentUser._id}`}>
                 <button type="button" className="btn btn-primary">
-                  [insert profile pic]
+                  Account
                 </button>
               </Link>
             </div>

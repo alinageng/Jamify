@@ -16,7 +16,7 @@ function SignIn() {
     try {
       const currentUser = await client.signIn(account);
       dispatch(setCurrentUser(currentUser));
-      navigate("/profile");
+      navigate(`/profile/${currentUser._id}`);
     } catch (error) {
       setError(error);
     }
