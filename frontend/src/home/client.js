@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 const request = axios.create({
   withCredentials: true,
 })
@@ -14,9 +13,6 @@ export const getAllPosts = async () => {
 }
 
 export const submitNewPost = async (newPost) => {
-  console.log("Submitting this new post");
-  console.log(newPost);
-
   const response = await request.post(`${POSTS_API}`, newPost);
   return response.data;
 }
@@ -39,4 +35,9 @@ export const getPostById = async (postId) => {
 export const getPostsByUserId = async (userId) => {
   const response = await request.get(`${POSTS_API}/by/${userId}`)
   return response;
+}
+
+export const getUsersHomepagePosts = async (userId) => {
+  const response = await request.get(`${POSTS_API}/homepage/${userId}`)
+  return response.data;
 }
