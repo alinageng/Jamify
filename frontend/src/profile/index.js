@@ -11,9 +11,11 @@ import {getUserInfo} from "../users/client";
 function Profile() {
   const {userId} = useParams();
   const [userInfo, setUserInfo] = useState();
-  const [numFollowers, setNumFollowers] = useState();
-  const [numFollowing, setNumFollowing] = useState();
-  const { id } = useSelector((state) => state.user); // TODO check if this is the currentUser's profile
+  const [numFollowers, setNumFollowers] = useState(-1);
+  const [numFollowing, setNumFollowing] = useState(-1);
+  const { currentUser } = useSelector((state) => state.user); // TODO check if this is the currentUser's profile
+  const [isMyProfile, setIsMyProfile] = useState(false);
+  const [isFollowing, setIsFollowing] = useState(false);
   const navigate = useNavigate();
 
   const signout = async () => {
@@ -21,6 +23,21 @@ function Profile() {
     navigate("../../home");
     window.location.reload(false);
   };
+
+
+  const handleIsMyProfile = async () => {
+    if (currentUser) { //if logged in
+      if (currentUser._id === userId) { // is this currentUser's profile?
+        setIsMyProfile(true);
+      }
+      else {
+        console.log("this should print");
+        const response = await client.isFollowing(userId, currentUser._id); // check if currentUser follows this profile
+        setIsFollowing(response);
+        console.log("isfollowing: ", response);
+      }
+    }
+  }
 
   const fetchUserInfo = async ()=> {
     try {
@@ -41,10 +58,40 @@ function Profile() {
   useEffect(() => {
     fetchUserInfo();
     fetchFollows();
-  },[userId])
+    handleIsMyProfile();
+  },[userId, isFollowing])
+
+  const handleFollow = async () => {
+    try {
+      const newFollow = {followedId: userId, followedUsername: userInfo.username, followerId: currentUser._id, followerUsername: currentUser.username};
+      console.log("new follow: ", newFollow);
+      const status = await client.createFollow(newFollow);
+      console.log("status: ", status);
+      if (status === 200) {
+        setIsFollowing(true);
+      }
+    } catch(error) {
+      console.log("Couldn't follow")
+    }
+  }
+
+  const handleUnfollow = async () => {
+    try {
+      const status = await client.deleteFollow(userId, currentUser._id);
+      if (status === 200) {
+        setIsFollowing(false);
+      }
+    } catch(error) {
+      console.log("Couldn't unfollow")
+    }
+  }
 
   return (
     <div className="container">
+      {currentUser && <button className="btn btn-primary float-end" onClick={signout}>
+        Logout
+      </button>}
+
       <h1>Profile</h1>
       {JSON.stringify(userInfo)}
       {userInfo &&
@@ -52,14 +99,27 @@ function Profile() {
           <div className="row">
             <div className="col">
               <div className={"nameText"}>{userInfo.firstName} {userInfo.lastName}</div>
+
             </div>
             <div className="col">
-              <button  className="btn btn-primary float-end">
-                Edit Profile
-              </button>
-              <button className="btn btn-primary float-end" onClick={signout}>
-                Logout
-              </button>
+              {currentUser?
+                isMyProfile?
+                  <button  className="btn btn-primary float-end">
+                    Edit Profile
+                  </button> :
+                  isFollowing ?
+                    <button  className="btn btn-primary float-end" onClick={handleUnfollow}>
+                      unfollow
+                    </button> :
+                    <button  className="btn btn-primary float-end" onClick={handleFollow}>
+                      follow
+                    </button>
+                : <Link to='/login'>
+                    <button type="button" className="btn btn-primary float-end">
+                      Login to follow
+                    </button>
+                  </Link>
+              }
             </div>
           </div>
           <div className="row mt-4">

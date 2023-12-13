@@ -28,6 +28,12 @@ export const getUserInfo = async(userId) => {
   return response.data;
 }
 
+export const signup = async (credentials) => {
+  const response = await axios.post(
+    `${USER_API}/signup`, credentials);
+  return response.data;
+};
+
 export const getNumFollowers = async(userId) => {
   const response = await request.get(`${FOLLOW_API}/${userId}/num_followers`)
   return response.data;
@@ -48,8 +54,19 @@ export const getFollowing = async(userId) => {
   return response.data;
 }
 
-export const signup = async (credentials) => {
-  const response = await axios.post(
-    `${USER_API}/signup`, credentials);
+export const isFollowing = async (followedId, followerId) => {
+  const response = await axios.get(`${FOLLOW_API}/${followedId}/${followerId}`);
+  console.log("is following: ", response);
   return response.data;
-};
+}
+
+export const createFollow = async (follow) => {
+  const response = await axios.post(`${FOLLOW_API}`, follow);
+  return response.status;
+}
+
+export const deleteFollow = async (followedId, followerId) => {
+  console.log("body for deleteFollow: ", followedId, followerId);
+  const response = await axios.delete(`${FOLLOW_API}/${followedId}/${followerId}`);
+  return response.status;
+}

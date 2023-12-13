@@ -16,7 +16,7 @@ function Signup() {
   const signup = async () => {
     try {
       await client.signup(credentials);
-      navigate("/profile");
+      navigate("/profile/");
     } catch (err) {
         console.log(err)
     //   setError(err.response.data.message);
