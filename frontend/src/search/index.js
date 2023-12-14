@@ -40,7 +40,7 @@ function Search() {
         <textarea className="form-control" id="Description" rows="3" value={description} onChange={handleDescriptionChange}></textarea>
       </div>
       <DisplaySearchResults/>
-      <button className="btn btn-primary float-end mt-4" type="submit" onClick={runSubmitNewPost}>Post</button>
+      <button className="btn btn-light float-end mt-4 update-button" type="submit" onClick={runSubmitNewPost}>Post</button>
     </div>
     )
 }

@@ -91,7 +91,10 @@ function Details() {
       {details && itemType === "Track" &&
         <div>
           <button className="btn btn-light float-end" onClick={backToSearch}>
-            Back To Search Results
+            Back To Search
+          </button>
+          <button className="btn btn-light float-end" onClick={backToHome}>
+            Back To Home
           </button>
           <h1>
             Track Details

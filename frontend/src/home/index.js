@@ -41,19 +41,19 @@ function Home() {
           {currentUser ? (
             <div className="text-end">
               <Link to='/search'>
-                <button type="button" className="btn btn-primary me-2">
+                <button type="button" className="btn btn-light me-2 nav-button ">
                   New Post
                 </button>
               </Link>
               <Link to={`/profile/${currentUser._id}`}>
-                <button type="button" className="btn btn-primary">
+                <button type="button" className="btn btn-light nav-button ">
                   Account
                 </button>
               </Link>
             </div>
           ) : (
             <Link to='/login'>
-              <button type="button" className="btn btn-secondary">
+              <button type="button" className="btn btn-light update-button">
                 Login
               </button>
             </Link>
