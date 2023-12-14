@@ -46,3 +46,7 @@ export const getPostsByTaggedId = async (spotifyLink) => {
   return response;
 }
 
+export const deletePost = async (postId) => {
+  const response = await request.delete(`${POSTS_API}/${postId}`);
+  return response;
+}
