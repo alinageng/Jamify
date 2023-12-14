@@ -13,11 +13,14 @@ function Home() {
   const { currentUser } = useSelector((state) => state.user);
 
   const callGetAllPosts = async () => {
+    
     if (currentUser) {
+      console.log("logged in results")
       const response = await getUsersHomepagePosts(currentUser._id);
       setPosts(response)
     }
     else {
+      console.log("no user results")
       const response = await client.getAllPosts();
       setPosts(response);
     }
@@ -25,39 +28,14 @@ function Home() {
 
   useEffect(() => {
     callGetAllPosts();
-  },[])
+  },[currentUser])
 
   return (
     <div className="container">
-      <div className="d-flex justify-content-between align-items-center">
-        <div>
-          <h1 class="text-color-logo">Home</h1>
-        </div>
+      <div className="justify-content-between align-items-center">
         <div className="text-center">
           <img src={image} alt="Jamify Logo" height="140px" />
           <h6 class="text-color-logo">Share your favorite albums and tracks from Spotify with your friends!</h6>
-        </div>
-        <div>
-          {currentUser ? (
-            <div className="text-end">
-              <Link to='/search'>
-                <button type="button" className="btn btn-primary me-2">
-                  New Post
-                </button>
-              </Link>
-              <Link to={`/profile/${currentUser._id}`}>
-                <button type="button" className="btn btn-primary">
-                  Account
-                </button>
-              </Link>
-            </div>
-          ) : (
-            <Link to='/login'>
-              <button type="button" className="btn btn-secondary">
-                Login
-              </button>
-            </Link>
-          )}
         </div>
       </div>
       <hr />
