@@ -128,12 +128,12 @@ function Profile() {
             </div>
             <div className="col">
               <Link to={`followers`}>
-                {numFollowers} followers
+                {numFollowers} Followers
               </Link>
             </div>
             <div className="col">
               <Link to={`following`}>
-              {numFollowing} following
+              {numFollowing} Following
               </Link>
             </div>
           </div>
