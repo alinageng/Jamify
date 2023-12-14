@@ -80,8 +80,7 @@ function Signup() {
         onChange={(e) => setCredentials({
           ...credentials,
           spotify_username: e.target.value })} />
-
-    <div>
+        
       <label for="roleSelect">
         Role
       </label>
