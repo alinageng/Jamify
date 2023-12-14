@@ -1,5 +1,7 @@
 import model from "./model.js";
 
+export const findAllUsers = () => model.find();
+
 export const findUserByCredentials = (username, password) =>
   model.findOne( {username, password});
 
