@@ -8,3 +8,6 @@ export const findUserById = (userId) =>
 export const createUser = (user) => model.create(user);
 
 export const findUserByUsername = (username) => model.findOne({ username: username });
+
+export const updateUserById = (userId, userInfo) =>
+  model.findByIdAndUpdate(userId, userInfo, { new: true });
