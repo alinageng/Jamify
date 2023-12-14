@@ -13,7 +13,11 @@ import Navigation from "./Navigation";
 import PostDetails from "./postLists/postDetails";
 import Follow from "./profile/follow";
 import Signup from './users/signup';
+<<<<<<< HEAD
+import UserTable from './users/table';
+=======
 import EditProfile from './profile/editProfile';
+>>>>>>> e7e7fe69215ebcdb1ae009e54c94ceca8d4ecb03
 
 function App() {
   return (
@@ -33,6 +37,7 @@ function App() {
               <Route path="/edit-profile" element={<EditProfile/>}/>
               <Route path="/details" element={<Details/>}/>
               <Route path="/post/:postId" element={<PostDetails/>}/>
+              <Route path="/admin" element={<UserTable />} />
             </Routes>
           </div>
         </HashRouter>
