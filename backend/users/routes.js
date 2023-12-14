@@ -82,7 +82,7 @@ function UserRoutes(app) {
   app.post("/api/users/signin", signin)
   app.post("/api/users/account", account)
   app.post("/api/users/signout", signout)
-  app.post("/api/users/signup", signup);
+  app.post("/api/users/register", signup);
   app.get("/api/users/userInfo", findUserByUsername);
   app.put("/api/users/:userId", updateUserInfo)
   app.delete("/api/users/:userId", deleteUser);

@@ -2,3 +2,11 @@ a {
     color: black;
     text-decoration: none;
 }
+
+.list-group-item {
+    background-color: rgb(223, 236, 240);
+}
+
+.div.border.rounded.p-3{
+    background-color: lightgrey;
+}

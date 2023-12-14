@@ -36,7 +36,7 @@ function EditProfile() {
         <hr></hr>
 
         {error && <div className="alert alert-danger">{error.message}</div>}
-        <div className={"col-6"}>
+        <div className={"col-6 edit-profile"}>
           <form>
             <div className="form-group mt-2">
               <label htmlFor="firstNameInput">First name</label>

@@ -80,7 +80,8 @@ function Signup() {
         onChange={(e) => setCredentials({
           ...credentials,
           spotify_username: e.target.value })} />
-        
+
+      <div>
       <label for="roleSelect">
         Role
       </label>
@@ -96,7 +97,7 @@ function Signup() {
           />
           User
         </label>
-      <br/>
+        <br/>
         <label>
           <input
             type="checkbox"
@@ -125,6 +126,7 @@ function Signup() {
       <button className="btn btn-primary float-end" onClick={signup}>
         Signup
       </button>
+    </div>
     </div>
   );
 }

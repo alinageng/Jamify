@@ -26,7 +26,8 @@ function DisplayFollowInfo({ userId }) {
               {userInfo.firstName + " " + userInfo.lastName}
             </h6>
             <p>
-              {"Spotify Username: " + userInfo.spotify_id}
+              {userInfo.spotify_id !== undefined &&
+              "Spotify Username: " + userInfo.spotify_id}
             </p>
           </>
         )}

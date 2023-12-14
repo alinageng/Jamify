@@ -2,10 +2,13 @@ import {useDispatch, useSelector} from "react-redux";
 import {setTaggedItem} from "./taggedItemReducer";
 import Album from "./Album";
 import './index.css'
+import {useState} from "react";
+import {useLocation} from "react-router-dom";
 
 function DisplayAlbumResults({ albums }) {
   const { taggedItem } = useSelector((state) => (state.taggedItem))
   const dispatch = useDispatch();
+  const showTagButton = useLocation().pathname === '/search';
 
   const isTagged = (id) => {
     if (taggedItem) {
@@ -28,8 +31,9 @@ function DisplayAlbumResults({ albums }) {
                   <Album album={art}/>
                 </div>
                 <div className="col-2">
+                  {showTagButton  &&
                   <button
-                    className="btn btn-primary float-end"
+                    className="btn btn-secondary float-end"
                     type="button"
                     onClick={() => dispatch(setTaggedItem({
                       createdBy: art.artists[0].name,
@@ -43,6 +47,7 @@ function DisplayAlbumResults({ albums }) {
                   >
                     Tag
                   </button>
+                  }
                 </div>
               </div>
             </li>

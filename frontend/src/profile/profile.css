@@ -1,5 +1,17 @@
 .nameText {
-    font-size:36px;
+    font-size:50px;
     font-weight: 300;
+    background-color: rgb(219, 234, 239);
+    border-radius: 20px;
+    padding : 10px;
+    
+}
+
+.edit-profile {
+    background-color: rgb(222, 235, 240);
+}
+
+.form {
+    width : 100
 }
 

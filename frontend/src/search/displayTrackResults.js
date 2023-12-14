@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {setTaggedItem} from "./taggedItemReducer";
 import Track from "./Track";
+import {useLocation} from "react-router-dom";
 
 function DisplayTrackResults({ tracks }) {
   const { taggedItem } = useSelector((state) => (state.taggedItem))
   const dispatch = useDispatch();
+  const showTagButton = useLocation().pathname === '/search';
+
 
   const isTagged = (id) => {
     if (taggedItem) {
@@ -29,8 +32,9 @@ function DisplayTrackResults({ tracks }) {
                     <Track track={art}/>
                   </div>
                   <div className="col-2">
+                    {showTagButton &&
                     <button
-                      className="btn btn-primary float-end"
+                      className="btn btn-secondary float-end"
                       type="button"
                       onClick={() => dispatch(setTaggedItem({
                         createdBy: art.artists[0].name,
@@ -44,6 +48,7 @@ function DisplayTrackResults({ tracks }) {
                     >
                       Tag
                     </button>
+                    }
                   </div>
                 </div>
               </li>
