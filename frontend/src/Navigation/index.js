@@ -13,6 +13,13 @@ function Navigation() {
             Home
           </NavLink>
         </li>
+        {currentUser && (
+        <li className="nav-item">
+          <NavLink className="nav-link" to="/explore" activeClassName="active-link">
+            Explore
+          </NavLink>
+        </li>
+        )}
         <li className="nav-item">
           <NavLink className="nav-link" to="/search-music" activeClassName="active-link">
             Search

@@ -12,11 +12,12 @@ export const findPostByPostId = (postId) =>
   Post.findById(postId);
 
 export const findPostsByUserId = (userId) =>
-  Post.find({authorId: userId}).sort({createdAt: -1}).exec();
+  Post.find({authorId: userId}).sort({datePosted: -1}).exec();
 
 export const findPostsForUsersHomepage = async (userId) => {
   const followedUsers = await Follow.find({ followerId: userId });
   const followedUserIds = followedUsers.map(follow => follow.followedId);
+  followedUserIds.push(userId);
   return await Post.find({authorId: {$in: followedUserIds}}).populate('authorId');
 }
 

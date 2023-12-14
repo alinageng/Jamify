@@ -21,7 +21,7 @@ function DisplayTaggedPosts({spotifyLink}) {
 
   return (
     <div className="mt-4">
-      <h4>My Posts</h4>
+      <h4>What Others have Posted</h4>
 
       {posts && <DisplayPostsList posts={posts}/>}
     </div>

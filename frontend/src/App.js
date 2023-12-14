@@ -17,6 +17,7 @@ import UserTable from './users/table';
 import EditProfile from './profile/editProfile';
 import DisplaySearchResults from "./search/displaySearchResults";
 import SearchMusic from "./search/searchMusic";
+import Explore from './explore';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
               <Route path="/details" element={<Details/>}/>
               <Route path="/post/:postId" element={<PostDetails/>}/>
               <Route path="/admin" element={<UserTable />} />
+              <Route path="/explore" element={<Explore />} />
             </Routes>
           </div>
         </HashRouter>
