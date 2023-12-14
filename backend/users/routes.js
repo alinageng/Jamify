@@ -48,6 +48,7 @@ function UserRoutes(app) {
     } else{
       res.json(currentUser)
     }
+
   };
 
   const findUserByUsername = async (req, res) => {

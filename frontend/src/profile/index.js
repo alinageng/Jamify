@@ -88,24 +88,24 @@ function Profile() {
 
   return (
     <div className="container">
-      {currentUser && <button className="btn btn-primary float-end" onClick={signout}>
+      {currentUser && <button className="btn btn-danger float-end" onClick={signout}>
         Logout
       </button>}
 
-      <h1>Profile</h1>
-      {JSON.stringify(userInfo)}
+      <h1>My Profile</h1>
+      <hr></hr>
+      {/* {JSON.stringify(userInfo)} */}
       {userInfo &&
         <div>
           <div className="row">
             <div className="col">
               <div className={"nameText"}>{userInfo.firstName} {userInfo.lastName}</div>
-
             </div>
             <div className="col">
               {currentUser?
                 isMyProfile?
-                  <button  className="btn btn-primary float-end">
-                    Edit Profile
+                  <button  className="btn btn-light float-end">
+                    <Link to="/edit-profile"> Edit Profile </Link>
                   </button> :
                   isFollowing ?
                     <button  className="btn btn-primary float-end" onClick={handleUnfollow}>
