@@ -47,8 +47,21 @@ function Navigation() {
               Admin
             </Link>
           </li>
-        )}
-      </ul>
+          
+          <li className="nav-item">
+            <Link className="nav-link" to="/login">
+              Log In 
+            </Link>
+          </li>
+
+          <li className="nav-item">
+            <Link className="nav-link" to="/signup">
+              Sign Up
+            </Link>
+          </li>
+          
+        </ul>
+
     </nav>
   );
 }
