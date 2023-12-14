@@ -2,6 +2,7 @@ import {useLocation, useParams} from "react-router-dom";
 import { getTrackDetails} from "../utils/spotify-service";
 import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
+import DisplayTaggedPosts from "./DisplayTaggedPosts";
 function Details() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -11,6 +12,8 @@ function Details() {
   const [details, setDetails] = useState(null);
   const [itemType, setItemType] = useState();
   const { accessToken } = useSelector((state) => state.accessToken);
+  const trackDelimiter = 'tracks/';
+  const albumDelimiter = 'albums/';
 
   const callSearchSpotify = async () => {
     try {
@@ -51,11 +54,15 @@ function Details() {
           </h2>
           <img src={details.images[1].url} />
           <h2>
-            released: {details.release_date}
+            Released: {details.release_date}
           </h2>
           <h2>
-            artist: {details.artists[0].name}
+            Artist: {details.artists[0].name}
           </h2>
+          <div>
+
+      <DisplayTaggedPosts spotifyLink={albumId}/>
+      </div>
         </div>
       }
       {details && itemType === "Track" &&
@@ -68,16 +75,16 @@ function Details() {
           </h2>
           <img src={details.album.images[1].url} />
           <h2>
-            released: {details.album.release_date}
+            Released: {details.album.release_date}
           </h2>
           <h2>
-            artist: {details.album.artists[0].name}
+            Artist: {details.album.artists[0].name}
           </h2>
+          <div>
+      <DisplayTaggedPosts spotifyLink={trackId}/>
+      </div>
         </div>
       }
-      <button className="btn btn-primary" >
-        Add To Post
-      </button>
     </div>
   )
 

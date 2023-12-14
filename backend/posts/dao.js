@@ -5,7 +5,6 @@ import {Follow} from "../followers/model.js";
 export const findAllPosts = () =>
   Post.find().sort({datePosted: -1}).populate('tagged').exec();
 
-
 export const createNewPost = (newPost) =>
   Post.create(newPost);
 
@@ -20,4 +19,16 @@ export const findPostsForUsersHomepage = async (userId) => {
   const followedUserIds = followedUsers.map(follow => follow.followedId);
   return await Post.find({authorId: {$in: followedUserIds}}).populate('authorId');
 }
-  // Post.find({authorId: userId}).sort({createdAt: -1}).exec();
+
+  export const findPostsByTaggedItemId = async (spotifyLink) => {
+    try {
+      const posts = await Post.find({ 'tagged.spotifyLink': { $regex: spotifyLink } })
+        .sort({ datePosted: -1 })
+        .populate('tagged')
+        .exec();
+  
+      return posts;
+    } catch (error) {
+      throw new Error('Error fetching posts by Spotify ID');
+    }
+  };

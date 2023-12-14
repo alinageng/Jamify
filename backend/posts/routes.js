@@ -32,11 +32,18 @@ function PostsRoutes(app) {
     res.json(posts);
   }
 
+  const getPostsByTaggedItemId = async (req, res) => {
+    const spotifyLink = req.params.spotifyLink;
+    const posts = await dao.findPostsByTaggedItemId(spotifyLink);
+    res.json(posts);
+  }
+
   app.get("/api/posts", getAllPosts)
   app.get("/api/posts/by/:userId", getAllPostsWrittenByUser)
   app.get("/api/posts/homepage/:userId", getUsersHomepagePosts)
   app.post("/api/posts", insertNewPost)
   app.get("/api/posts/:postId", getPostById)
+  app.get("/api/posts/tagged/:spotifyLink", getPostsByTaggedItemId)
 }
 
 export default PostsRoutes;
