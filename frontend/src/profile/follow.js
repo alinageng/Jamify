@@ -27,12 +27,12 @@ function Follow() {
   })
 
   return (
-    <div>
+    <div className={"container"}>
       {/* <h1>{followType} for ${userId}</h1> */}
       {followType === 'followers' ? (
-            <h1>Followers:</h1>
+            <h1>Followers</h1>
           ) : (
-            <h1>Following:</h1>
+            <h1>Following</h1>
           )}
       {/* <DisplayUserFollow userId={userId}/> */}
       {follow && <DisplayUserFollow follows={follow} followType={followType}/>}
