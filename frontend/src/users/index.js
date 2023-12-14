@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { setCurrentUser } from "./userReducer";
 import { useDispatch } from "react-redux";
-import Signup from "./signup";
+import './index.css';
 
 function SignIn() {
   const { currentUser } = useSelector((state) => state.user);
@@ -23,27 +23,42 @@ function SignIn() {
     }
   };
   return (
-    <div>
-      <h1>Sign In {JSON.stringify(currentUser)}</h1>
+    <div className={"container"}>
+      <h1>Sign In</h1>
       {error && <div className="alert alert-danger">{error.message}</div>}
-      <input
-        type="text"
-        className="form-control"
-        value={account.username}
-        onChange={(e) => setAccount({ ...account, username: e.target.value })}
-      />
-      <input
-        type="password"
-        className="form-control"
-        value={account.password}
-        onChange={(e) => setAccount({ ...account, password: e.target.value })}
-      />
-      <button onClick={signIn} className="btn btn-primary">
-        Sign In
-      </button>
-      <Link to="/signup" className="btn btn-link">
-        Sign Up
-      </Link>
+      <div className={"col signinCol"}>
+        <form>
+          <label htmlFor="usernameInput">
+            Username
+          </label>
+          <input
+            type="text"
+            id="usernameInput"
+            className="form-control"
+            value={account.username}
+            onChange={(e) => setAccount({ ...account, username: e.target.value })}
+          />
+          <label htmlFor="passwordInput">
+            Password
+          </label>
+          <input
+            type="password"
+            id="passwordInput"
+            className="form-control"
+            value={account.password}
+            onChange={(e) => setAccount({ ...account, password: e.target.value })}
+          />
+          <div className="float-end mt-4">
+            <Link to="/signup" className="btn btn-light margin10">
+              Sign Up
+            </Link>
+            <button onClick={signIn} className="btn btn-primary ml-2">
+              Sign In
+            </button>
+          </div>
+        </form>
+      </div>
+
     </div>
   );
 }
