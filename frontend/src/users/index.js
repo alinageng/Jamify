@@ -23,8 +23,10 @@ function SignIn() {
     }
   };
   return (
-    <div>
-      <h1>Sign In {JSON.stringify(currentUser)}</h1>
+    <div className="container">
+      <h1>Sign In 
+        {/* {JSON.stringify(currentUser)} */}
+        </h1>
       {error && <div className="alert alert-danger">{error.message}</div>}
       <input
         type="text"

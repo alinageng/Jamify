@@ -1,0 +1,14 @@
+.form-check {
+    display: flex;
+    flex-direction: column;
+}
+  
+.label-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.input-radio {
+    margin-right: 8px;
+}

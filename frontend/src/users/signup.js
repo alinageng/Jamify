@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import * as client from "./client";
 import { setCurrentUser } from "./userReducer";
 import { useDispatch } from "react-redux";
+import "./user.css"
 
 function Signup() {
   const [error, setError] = useState("");
@@ -33,7 +34,7 @@ function Signup() {
     });
   };
   return (
-    <div>
+    <div className="container">
       <h1>Sign Up</h1>
       {error && <div>{error}</div>}
       <input className="form-control"
@@ -80,6 +81,7 @@ function Signup() {
           ...credentials,
           spotify_username: e.target.value })} />
 
+<div className="form-check">
     <label>
         <input
           type="radio"
@@ -112,6 +114,7 @@ function Signup() {
         />
         Admin
       </label>
+      </div>
 
       <button className="btn btn-primary float-end" onClick={signup}>
         Signup

@@ -1,0 +1,24 @@
+.navbar-nav .nav-link.active {
+    background-color: lightblue;
+    color: white;
+    border-radius: 10px;
+}
+
+.nav-bar {
+    margin-bottom: 3%;
+}
+
+.navbar-nav .nav-link {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.navbar-nav {
+    display: flex;
+    width: 100%; /* Ensures the navbar-nav takes up the full width */
+  }
+  
+  .nav-item {
+    flex-grow: 1;
+  }

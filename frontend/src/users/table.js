@@ -22,7 +22,7 @@ function UserTable() {
   return (
     <div style={{ margin: '20px' }}>
       <h1>User List</h1>
-      <table className="table">
+      <table className="table table table-striped table-hover ">
         <thead>
           <tr>
             <th>Username</th>
