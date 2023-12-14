@@ -24,22 +24,28 @@ function DisplayTrackResults({ tracks }) {
           <ul className="list-group">
             {tracks.items.map((art) => (
               <li className={`list-group-item ${isTagged(art.id) ? 'active' : ''}`} key={art.id}>
-                <Track track={art}/>
-                <button
-                  className="btn btn-primary float-end"
-                  type="button"
-                  onClick={() => dispatch(setTaggedItem({
-                    createdBy: art.artists[0].name,
-                    spotifyId: art.id,
-                    spotifyLink: art.href,
-                    releaseDate: art.album.release_date,
-                    imageLink: art.album.images[2].url,
-                    taggedItemType: "Track",
-                    title: art.name
-                  }))}
-                >
-                  Tag
-                </button>
+                <div className="row">
+                  <div className="col-10">
+                    <Track track={art}/>
+                  </div>
+                  <div className="col-2">
+                    <button
+                      className="btn btn-primary float-end"
+                      type="button"
+                      onClick={() => dispatch(setTaggedItem({
+                        createdBy: art.artists[0].name,
+                        spotifyId: art.id,
+                        spotifyLink: art.href,
+                        releaseDate: art.album.release_date,
+                        imageLink: art.album.images[2].url,
+                        taggedItemType: "Track",
+                        title: art.name
+                      }))}
+                    >
+                      Tag
+                    </button>
+                  </div>
+                </div>
               </li>
             ))}
           </ul>
