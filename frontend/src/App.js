@@ -13,6 +13,7 @@ import Navigation from "./Navigation";
 import PostDetails from "./postLists/postDetails";
 import Follow from "./profile/follow";
 import Signup from './users/signup';
+import UserTable from './users/table';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
               <Route path="/signup" element={<Signup/>}/>
               <Route path="/details" element={<Details/>}/>
               <Route path="/post/:postId" element={<PostDetails/>}/>
+              <Route path="/admin" element={<UserTable />} />
             </Routes>
           </div>
         </HashRouter>

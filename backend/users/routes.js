@@ -56,7 +56,13 @@ function UserRoutes(app) {
     res.json(response);
   }
 
+  const findAllUsers = async (req, res) => {
+    const users = await dao.findAllUsers();
+    res.json(users);
+  };
 
+
+  app.get("/api/users", findAllUsers);
   app.get("/api/users/:userId", getUserInfo)
   app.post("/api/users/signin", signin)
   app.post("/api/users/account", account)
