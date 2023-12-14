@@ -91,9 +91,13 @@ function Profile() {
       {currentUser && <button className="btn btn-dark float-end" onClick={signout}>
         Logout
       </button>}
+      <br></br>
 
+      {(currentUser &&
+        isMyProfile) &&
       <h1>My Profile</h1>
-      <hr></hr>
+      }     
+       <hr></hr>
       {/* {JSON.stringify(userInfo)} */}
       {userInfo &&
         <div>
@@ -108,10 +112,10 @@ function Profile() {
                     <Link to="/edit-profile"> Edit Profile </Link>
                   </button> :
                   isFollowing ?
-                    <button  className="btn btn-primary float-end" onClick={handleUnfollow}>
+                    <button  className="btn btn-light update-button float-end" onClick={handleUnfollow}>
                       Unfollow
                     </button> :
-                    <button  className="btn btn-primary float-end" onClick={handleFollow}>
+                    <button  className="btn btn-light update-button float-end" onClick={handleFollow}>
                       Follow
                     </button>
                 : <Link to='/login'>
