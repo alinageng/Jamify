@@ -13,6 +13,11 @@ function Navigation() {
             Home
           </NavLink>
         </li>
+        <li className="nav-item">
+          <NavLink className="nav-link" to="/search-music" activeClassName="active-link">
+            Search
+          </NavLink>
+        </li>
         {currentUser?.role === 'ADMIN' && (
           <li className="nav-item">
             <NavLink className="nav-link" to="/admin" activeClassName="active-link">

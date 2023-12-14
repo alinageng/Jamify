@@ -23,7 +23,6 @@ function DisplayUserPosts({userId}) {
   return (
     <div>
       <h4>My Posts</h4>
-
       {posts && <DisplayEachUserPost posts={posts} userId={userId}/>}
     </div>
   );

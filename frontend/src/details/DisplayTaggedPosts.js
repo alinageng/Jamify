@@ -20,7 +20,7 @@ function DisplayTaggedPosts({spotifyLink}) {
   }, [])
 
   return (
-    <div>
+    <div className="mt-4">
       <h4>My Posts</h4>
 
       {posts && <DisplayPostsList posts={posts}/>}

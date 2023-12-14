@@ -15,6 +15,8 @@ import Follow from "./profile/follow";
 import Signup from './users/signup';
 import UserTable from './users/table';
 import EditProfile from './profile/editProfile';
+import DisplaySearchResults from "./search/displaySearchResults";
+import SearchMusic from "./search/searchMusic";
 
 function App() {
   return (
@@ -27,6 +29,7 @@ function App() {
               <Route path="/" element={<Navigate to="home"/>}/>
               <Route path="/home" element={<Home/>}/>
               <Route path="/search" element={<Search/>}/>
+              <Route path="/search-music" element={<DisplaySearchResults/>}/>
               <Route path="/login" element={<Login/>}/>
               <Route path="/profile/:userId" element={<Profile/>}/>
               <Route path="/profile/:userId/:followType" element={<Follow/>}/>

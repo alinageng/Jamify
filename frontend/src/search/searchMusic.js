@@ -6,9 +6,8 @@ import {setResults, setSearchTerm} from "./taggedItemReducer";
 import DisplayTrackResults from "./displayTrackResults";
 import {useNavigate} from "react-router";
 
-function DisplaySearchResults() {
+function SearchMusic() {
 
-  const [itemType, setItemType] = useState(null); // "Album", "Playlist", "Track"
   const { accessToken } = useSelector((state) => state.accessToken);
   const { results, searchTerm } = useSelector((state) => state.taggedItem);
   const dispatch = useDispatch();
@@ -61,4 +60,4 @@ function DisplaySearchResults() {
   );
 }
 
-export default DisplaySearchResults;
+export default SearchMusic;
