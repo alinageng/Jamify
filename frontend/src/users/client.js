@@ -71,6 +71,7 @@ export const deleteFollow = async (followedId, followerId) => {
   return response.status;
 }
 
+
 // export const findUserByUsername = async (username) => {
 //   const response = await request.get(`${POSTS_API}/homepage/${userId}`)
 //   return response.data;
