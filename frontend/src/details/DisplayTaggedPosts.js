@@ -1,19 +1,18 @@
 import {useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import * as client from "../home/client";
-import DisplayEachUserPost from "./DisplayEachUserPost";
+import DisplayPostsList from "../postLists/DisplayPostsList";
 
 /**
  * displays a user's posts
  */
-function DisplayUserPosts({userId}) {
+function DisplayTaggedPosts({spotifyLink}) {
   const [posts, setPosts] = useState();
 
   const fetchPosts = async () => {
-    try {
-      const response = await client.getPostsByUserId(userId);
-      setPosts(response.data);
-    } catch(error) {}
+    const response = await client.getPostsByTaggedId(spotifyLink);
+    setPosts(response.data);
+ 
   }
 
   useEffect(() => {
@@ -21,11 +20,12 @@ function DisplayUserPosts({userId}) {
   }, [])
 
   return (
-    <div>
+    <div className="mt-4">
       <h4>My Posts</h4>
-      {posts && <DisplayEachUserPost posts={posts} userId={userId}/>}
+
+      {posts && <DisplayPostsList posts={posts}/>}
     </div>
   );
 }
 
-export default DisplayUserPosts;
+export default DisplayTaggedPosts;

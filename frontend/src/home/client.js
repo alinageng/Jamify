@@ -41,3 +41,12 @@ export const getUsersHomepagePosts = async (userId) => {
   const response = await request.get(`${POSTS_API}/homepage/${userId}`)
   return response.data;
 }
+export const getPostsByTaggedId = async (spotifyLink) => {
+  const response = await request.get(`${POSTS_API}/tagged/${spotifyLink}`);
+  return response;
+}
+
+export const deletePost = async (postId) => {
+  const response = await request.delete(`${POSTS_API}/${postId}`);
+  return response;
+}
