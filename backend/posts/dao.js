@@ -18,7 +18,7 @@ export const findPostsForUsersHomepage = async (userId) => {
   const followedUsers = await Follow.find({ followerId: userId });
   const followedUserIds = followedUsers.map(follow => follow.followedId);
   followedUserIds.push(userId);
-  return await Post.find({authorId: {$in: followedUserIds}}).populate('authorId');
+  return await Post.find({authorId: {$in: followedUserIds}}).sort({ datePosted: -1 }).populate('authorId');
 }
 
   export const findPostsByTaggedItemId = async (spotifyLink) => {
