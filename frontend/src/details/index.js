@@ -3,8 +3,12 @@ import { getTrackDetails} from "../utils/spotify-service";
 import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import DisplayTaggedPosts from "./DisplayTaggedPosts";
+import { useNavigate} from "react-router-dom";
+import "./index.css";
+
 function Details() {
   const location = useLocation();
+  const navigate = useNavigate();
   const searchParams = new URLSearchParams(location.search);
   const albumId = searchParams.get('album_id');
   const trackId = searchParams.get('track_id');
@@ -14,6 +18,14 @@ function Details() {
   const { accessToken } = useSelector((state) => state.accessToken);
   const trackDelimiter = 'tracks/';
   const albumDelimiter = 'albums/';
+
+  const backToSearch = async() => {
+    navigate("/search")
+  }
+
+  const backToHome = async() => {
+    navigate("/home")
+  }
 
   const callSearchSpotify = async () => {
     try {
@@ -45,21 +57,32 @@ function Details() {
     <div className="container">
 
       {details && itemType === "Album" &&
-        <div>
+        <div >
+          <button className="btn btn-light float-end" onClick={backToSearch}>
+            Back To Search
+          </button>
+          <button className="btn btn-light float-end" onClick={backToHome}>
+            Back To Home
+          </button>
           <h1>
             Album Details
           </h1>
+          <hr></hr>
+
+          <div id="details">
           <h2>
             {details.name}
           </h2>
           <img src={details.images[1].url} />
-          <h2>
+          <h3>
             Released: {details.release_date}
-          </h2>
-          <h2>
+          </h3>
+          <h3>
             Artist: {details.artists[0].name}
-          </h2>
-          <div>
+          </h3>
+          </div>
+
+        <div>
 
       <DisplayTaggedPosts spotifyLink={albumId}/>
       </div>
@@ -67,19 +90,27 @@ function Details() {
       }
       {details && itemType === "Track" &&
         <div>
+          <button className="btn btn-light float-end" onClick={backToSearch}>
+            Back To Search Results
+          </button>
           <h1>
             Track Details
           </h1>
+          <hr></hr>
+
+          <div id="details">
+
           <h2>
             {details.name}
           </h2>
           <img src={details.album.images[1].url} />
-          <h2>
+          <h3>
             Released: {details.album.release_date}
-          </h2>
-          <h2>
+          </h3>
+          <h3>
             Artist: {details.album.artists[0].name}
-          </h2>
+          </h3>
+          </div>
           <div>
       <DisplayTaggedPosts spotifyLink={trackId}/>
       </div>

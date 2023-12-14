@@ -5,17 +5,22 @@ import {useEffect, useState} from "react";
 import DisplayPostsList from "../postLists/DisplayPostsList";
 import * as client from "./client";
 import {getUsersHomepagePosts} from "./client";
+import image from "../images/Jamify.jpg"
+import "./home.css"
 
 function Home() {
   const [posts, setPosts] = useState();
   const { currentUser } = useSelector((state) => state.user);
 
   const callGetAllPosts = async () => {
+    
     if (currentUser) {
+      console.log("logged in results")
       const response = await getUsersHomepagePosts(currentUser._id);
       setPosts(response)
     }
     else {
+      console.log("no user results")
       const response = await client.getAllPosts();
       setPosts(response);
     }
@@ -23,16 +28,58 @@ function Home() {
 
   useEffect(() => {
     callGetAllPosts();
-  },[])
+  },[currentUser])
 
   return (
     <div className="container">
-      <h1>Home</h1>
-      <hr/>
+      <div className="justify-content-between align-items-center">
+        <div className="text-center">
+          <img src={image} alt="Jamify Logo" height="140px" />
+          <h6 class="text-color-logo">Share your favorite albums and tracks from Spotify with your friends!</h6>
+        </div>
+      </div>
+      <hr />
       <div>
-        {posts && <DisplayPostsList posts={posts}/>}
+        {posts && <DisplayPostsList posts={posts} />}
       </div>
     </div>
-  )
+  );
 }
+
 export default Home;
+    
+//     <div className="container">
+//       <img src={image} alt="Jamify Logo" height="80px" style={{ display: 'block', margin: '0 auto' }} />
+//       <h1>Home</h1>
+//       <div className="row">
+//         <div className="col">
+//           {currentUser?
+//             <div>
+//               <Link to='/search'>
+//                 <button type="button" className="btn btn-primary">
+//                   New Post
+//                 </button>
+//               </Link>
+//               <Link to={`/profile/${currentUser._id}`}>
+//                 <button type="button" className="btn btn-primary">
+//                   Account
+//                 </button>
+//               </Link>
+//             </div>
+//             :
+//             <Link to='/login'>
+//             <button type="button" className="btn btn-primary">
+//             Login
+//             </button>
+//             </Link>
+//           }
+//         </div>
+//       </div>
+//       <hr/>
+//       <div>
+//         {posts && <DisplayPostsList posts={posts}/>}
+//       </div>
+//     </div>
+//   )
+// }
+// export default Home;

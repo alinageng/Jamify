@@ -43,7 +43,7 @@ function SearchMusic() {
             />
           </div>
           <div className="col">
-            <button className="btn btn-primary" onClick={callSearchSpotify}>
+            <button className="btn btn-light" onClick={callSearchSpotify}>
               Search
             </button>
           </div>

@@ -1,4 +1,5 @@
 import Post from "./post";
+import "./post.css"
 
 function DisplayPostsList({posts}) {
 
