@@ -28,30 +28,6 @@ function Home() {
   return (
     <div className="container">
       <h1>Home</h1>
-      <div className="row">
-        <div className="col">
-          {currentUser?
-            <div>
-              <Link to='/search'>
-                <button type="button" className="btn btn-primary">
-                  New Post
-                </button>
-              </Link>
-              <Link to={`/profile/${currentUser._id}`}>
-                <button type="button" className="btn btn-primary">
-                  Account
-                </button>
-              </Link>
-            </div>
-            :
-            <Link to='/login'>
-            <button type="button" className="btn btn-primary">
-            Login
-            </button>
-            </Link>
-          }
-        </div>
-      </div>
       <hr/>
       <div>
         {posts && <DisplayPostsList posts={posts}/>}

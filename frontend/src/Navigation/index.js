@@ -13,16 +13,16 @@ function Navigation() {
             Home
           </NavLink>
         </li>
-        {currentUser?.role === 'ADMIN' && ( 
+        {currentUser?.role === 'ADMIN' && (
           <li className="nav-item">
             <NavLink className="nav-link" to="/admin" activeClassName="active-link">
               Admin
             </NavLink>
-            </li>
-          )
+          </li>
+        )
         }
 
-        {currentUser && ( // Use optional chaining to avoid null errors
+        {currentUser && (
           <li className="nav-item">
             <NavLink className="nav-link" to={`/profile/${currentUser._id}`} activeClassName="active-link">
               Profile
@@ -30,28 +30,28 @@ function Navigation() {
           </li>
         )}
 
-      {currentUser && ( // Use optional chaining to avoid null errors
+        {currentUser && (
           <li className="nav-item">
             <NavLink className="nav-link" to="/search" activeClassName="active-link">
               New Post
             </NavLink>
           </li>
         )}
-
+        {!currentUser && (
           <li className="nav-item">
             <NavLink className="nav-link" to="/login" activeClassName="active-link">
-              Log In 
+              Log In
             </NavLink>
           </li>
-
+        )}
+        {!currentUser && (
           <li className="nav-item">
             <NavLink className="nav-link" to="/signup" activeClassName="active-link">
               Sign Up
             </NavLink>
           </li>
-          
-        </ul>
-
+        )}
+      </ul>
     </nav>
   );
 }
