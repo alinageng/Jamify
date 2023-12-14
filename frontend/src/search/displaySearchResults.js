@@ -5,6 +5,7 @@ import DisplayAlbumResults from "./displayAlbumResults";
 import {setResults, setSearchTerm} from "./taggedItemReducer";
 import DisplayTrackResults from "./displayTrackResults";
 import {useNavigate} from "react-router";
+import "./index.css";
 
 function DisplaySearchResults() {
 
@@ -45,7 +46,7 @@ function DisplaySearchResults() {
             />
           </div>
           <div className="col">
-            <button className="btn btn-secondary" onClick={callSearchSpotify}>
+            <button className="btn btn-light search-button" onClick={callSearchSpotify}>
               Search
             </button>
           </div>

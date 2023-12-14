@@ -1,5 +1,14 @@
 .taggedItem {
-    background-color: #d8b9c3; /* Light purple color */
-    /* You might also want to adjust text color for better visibility */
-    color: #000; /* Black text color */
+    background-color: #d8b9c3;
+    color: #000; 
 }
+
+.search-button {
+    background-color: rgb(210, 232, 240);
+}
+
+.list-group-item.active {
+    background-color: rgb(174, 201, 210);
+    border-color: black;
+}
+

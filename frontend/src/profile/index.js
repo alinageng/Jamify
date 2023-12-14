@@ -88,7 +88,7 @@ function Profile() {
 
   return (
     <div className="container">
-      {currentUser && <button className="btn btn-danger float-end" onClick={signout}>
+      {currentUser && <button className="btn btn-dark float-end" onClick={signout}>
         Logout
       </button>}
 
@@ -109,10 +109,10 @@ function Profile() {
                   </button> :
                   isFollowing ?
                     <button  className="btn btn-primary float-end" onClick={handleUnfollow}>
-                      unfollow
+                      Unfollow
                     </button> :
                     <button  className="btn btn-primary float-end" onClick={handleFollow}>
-                      follow
+                      Follow
                     </button>
                 : <Link to='/login'>
                     <button type="button" className="btn btn-primary float-end">
@@ -138,6 +138,7 @@ function Profile() {
             </div>
           </div>
           <div className="mt-4">
+            <hr></hr>
             <DisplayUserPosts userId={userInfo._id}/>
           </div>
         </div>

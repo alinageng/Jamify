@@ -29,14 +29,14 @@ function EditProfile() {
     };
     return (
         <div className="container">
-        <button className="btn btn-light float-end" onClick={backToProfile}>
+        <button className="btn btn-light float-end update-button" onClick={backToProfile}>
             Back To Profile
         </button>
         <h1>Edit Profile</h1>
         <hr></hr>
 
         {error && <div className="alert alert-danger">{error.message}</div>}
-        <div className={"col-6 edit-profile"}>
+        <div className={"col-6"}>
           <form>
             <div className="form-group mt-2">
               <label htmlFor="firstNameInput">First name</label>
@@ -58,7 +58,7 @@ function EditProfile() {
               <input type="password" className="form-control" id="passwordInput"
                      onChange={(e) => setUserInfo( {...userInfo, password: e.target.value})}/>
             </div>
-            <button type="submit" className="btn btn-primary mt-4" onClick={handleUpdateInfo}>Update Info</button>
+            <button type="submit" className="btn btn-light mt-4 update-button" onClick={handleUpdateInfo}>Update Info</button>
           </form>
         </div>
       </div>

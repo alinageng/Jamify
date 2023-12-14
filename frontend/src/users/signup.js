@@ -36,6 +36,7 @@ function Signup() {
   return (
     <div className="container">
       <h1>Sign Up</h1>
+      <hr></hr>
       {error && <div>{error}</div>}
       <input className="form-control mt-4"
         value={credentials.username}
@@ -123,7 +124,7 @@ function Signup() {
         </label>
       </div>
 
-      <button className="btn btn-primary float-end" onClick={signup}>
+      <button className="btn btn-light update-button float-end" onClick={signup}>
         Signup
       </button>
     </div>

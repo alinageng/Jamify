@@ -23,7 +23,8 @@ function UserTable() {
   return (
     <div style={{ margin: '20px' }}>
       <h1>User List</h1>
-      <table className="table table table-striped table-hover ">
+      <hr></hr>
+      <table className="table table table-striped table-hover " >
         <thead>
           <tr>
             <th>Username</th>
@@ -47,7 +48,7 @@ function UserTable() {
               <td>{user.lastName}</td>
               <td>{user.role}</td>
               <td> 
-                <button className="btn btn-danger me-2" onClick={() => deleteUser(user)}>
+                <button className="btn btn-light me-2 update-button" onClick={() => deleteUser(user)}>
                   <BsTrash3Fill />
                 </button></td>
                 

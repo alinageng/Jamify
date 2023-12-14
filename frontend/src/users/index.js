@@ -28,6 +28,7 @@ function SignIn() {
       <h1>Sign In 
         {/* {JSON.stringify(currentUser)} */}
         </h1>
+        <hr></hr>
       {error && <div className="alert alert-danger">{error.message}</div>}
       <div className={"col signinCol"}>
         <form>
@@ -55,7 +56,7 @@ function SignIn() {
             <Link to="/register" className="btn btn-light margin10">
               Sign Up
             </Link>
-            <button onClick={signIn} className="btn btn-primary ml-2">
+            <button onClick={signIn} className="btn btn-light ml-2 update-button">
               Sign In
             </button>
           </div>

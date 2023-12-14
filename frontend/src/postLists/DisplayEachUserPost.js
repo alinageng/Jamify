@@ -27,7 +27,7 @@ function DisplayEachUserPost({posts, userId}) {
         <li className="list-group-item" key={post._id}>
           <Post post={post} showCommentsLink={true}/>
           {(currentUser?.role === 'ADMIN' || currentUser?._id === userId) && ( 
-           <button type="button" className="btn btn-danger float-end" onClick={() => DeletePost(post._id)}>Delete</button>
+           <button type="button" className="btn btn-dark float-end" onClick={() => DeletePost(post._id)}>Delete</button>
           )
         }
         </li>
