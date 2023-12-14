@@ -12,13 +12,14 @@ import FollowsRoutes from "./followers/routes.js";
 // mongoose.connect("mongodb://127.0.0.1:27017/alina");
 const mongodb = process.env.MONGO_DB_URL;
 mongoose.connect(mongodb);
+const allowedOrigins = ["http://localhost:3000", "https://jamify-backend.onrender.com"]
 
 //TEST
 const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: process.env.FRONTEND_URL
+    origin: allowedOrigins
   })
 );
 const sessionOptions = {
