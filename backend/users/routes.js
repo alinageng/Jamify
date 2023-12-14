@@ -72,7 +72,10 @@ function UserRoutes(app) {
     res.json(users);
   };
 
-
+  const deleteUser = async (req, res) => {
+    const status = await dao.deleteUser(req.params.userId);
+    res.json(status);
+};
 
   app.get("/api/users", findAllUsers);
   app.get("/api/users/:userId", getUserInfo)
@@ -82,6 +85,7 @@ function UserRoutes(app) {
   app.post("/api/users/signup", signup);
   app.get("/api/users/userInfo", findUserByUsername);
   app.put("/api/users/:userId", updateUserInfo)
+  app.delete("/api/users/:userId", deleteUser);
 
 }
 

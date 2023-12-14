@@ -11,6 +11,10 @@ function EditProfile() {
     const [userInfo, setUserInfo] = useState(JSON.parse(JSON.stringify(currentUser)));
     const [error, setError] = useState(null);
     const dispatch = useDispatch();
+
+    const backToProfile = async() => {
+        navigate(`/profile/${currentUser._id}`);
+    }
   
     const handleUpdateInfo = async() => {
       try {
@@ -25,7 +29,12 @@ function EditProfile() {
     };
     return (
         <div className="container">
+        <button className="btn btn-light float-end" onClick={backToProfile}>
+            Back To Profile
+        </button>
         <h1>Edit Profile</h1>
+        <hr></hr>
+
         {error && <div className="alert alert-danger">{error.message}</div>}
         <div className={"col-6"}>
           <form>
