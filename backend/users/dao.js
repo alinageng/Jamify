@@ -10,3 +10,7 @@ export const findUserById = (userId) =>
 export const createUser = (user) => model.create(user);
 
 export const findUserByUsername = (username) => model.findOne({ username: username });
+
+export const deleteUser = (userId) =>
+  model.deleteOne({ _id: userId });
+

@@ -13,6 +13,13 @@ export const findAllUsers = async () => {
   return response.data;
 };
 
+export const deleteUser = async (user) => {
+  const response = await axios.delete(
+    `${USER_API}/${user._id}`);
+  return response.data;
+};
+
+
 
 export const signIn = async (credentials) => {
   const response = await request.post(`${USER_API}/signin`, credentials);
