@@ -43,7 +43,7 @@ export const getUserInfo = async(userId) => {
 
 export const signup = async (credentials) => {
   const response = await axios.post(
-    `${USER_API}/signup`, credentials);
+    `${USER_API}/register`, credentials);
   return response.data;
 };
 

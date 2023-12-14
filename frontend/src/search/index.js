@@ -34,12 +34,13 @@ function Search() {
   return (
     <div className="container">
       <h1>New Post</h1>
+      <hr></hr>
       <div className="form-group">
         <label htmlFor="Description">Write Description</label>
         <textarea className="form-control" id="Description" rows="3" value={description} onChange={handleDescriptionChange}></textarea>
       </div>
       <DisplaySearchResults/>
-      <button className="btn btn-success float-end mt-4" type="submit" onClick={runSubmitNewPost}>Post</button>
+      <button className="btn btn-primary float-end mt-4" type="submit" onClick={runSubmitNewPost}>Post</button>
     </div>
     )
 }

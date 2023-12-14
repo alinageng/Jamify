@@ -34,7 +34,7 @@ function DisplayTrackResults({ tracks }) {
                   <div className="col-2">
                     {showTagButton &&
                     <button
-                      className="btn btn-primary float-end"
+                      className="btn btn-secondary float-end"
                       type="button"
                       onClick={() => dispatch(setTaggedItem({
                         createdBy: art.artists[0].name,

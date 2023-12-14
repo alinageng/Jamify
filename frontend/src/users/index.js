@@ -7,6 +7,7 @@ import { setCurrentUser } from "./userReducer";
 import { useDispatch } from "react-redux";
 import './index.css';
 
+
 function SignIn() {
   const { currentUser } = useSelector((state) => state.user);
   const [error, setError] = useState(null);
@@ -51,7 +52,7 @@ function SignIn() {
             onChange={(e) => setAccount({ ...account, password: e.target.value })}
           />
           <div className="float-end mt-4">
-            <Link to="/signup" className="btn btn-light margin10">
+            <Link to="/register" className="btn btn-light margin10">
               Sign Up
             </Link>
             <button onClick={signIn} className="btn btn-primary ml-2">

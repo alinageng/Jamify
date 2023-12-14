@@ -51,7 +51,7 @@ function Navigation() {
         )}
         {!currentUser && (
           <li className="nav-item">
-            <NavLink className="nav-link" to="/signup" activeClassName="active-link">
+            <NavLink className="nav-link" to="/register" activeClassName="active-link">
               Sign Up
             </NavLink>
           </li>

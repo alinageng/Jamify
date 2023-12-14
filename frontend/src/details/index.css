@@ -1,0 +1,10 @@
+#details {
+    background-color: rgb(211, 227, 232);
+    border-radius : 20px;
+    padding : 30px
+}
+
+h3 {
+    padding-top : 20px;
+    font-weight: 300;
+}
