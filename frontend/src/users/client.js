@@ -77,6 +77,12 @@ export const deleteFollow = async (followedId, followerId) => {
   return response.status;
 }
 
+export const updateUserInfo = async (userId, userInfo) => {
+  const response = await axios.put(
+    `${USER_API}/${userId}`, userInfo);
+  return response.data;
+};
+
 
 // export const findUserByUsername = async (username) => {
 //   const response = await request.get(`${POSTS_API}/homepage/${userId}`)
