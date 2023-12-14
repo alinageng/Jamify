@@ -70,3 +70,8 @@ export const deleteFollow = async (followedId, followerId) => {
   const response = await axios.delete(`${FOLLOW_API}/${followedId}/${followerId}`);
   return response.status;
 }
+
+// export const updateUser = async (user) => {
+//   const response = await axios.put(`${USER_API}/${user.userId}`, user);
+//   return response.data;
+// };

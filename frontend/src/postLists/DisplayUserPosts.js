@@ -22,7 +22,7 @@ function DisplayUserPosts({userId}) {
 
   return (
     <div>
-      <h5>displaying posts written by user</h5>
+      <h4>My Posts</h4>
       {posts && <DisplayPostsList posts={posts}/>}
     </div>
   );

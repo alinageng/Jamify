@@ -48,8 +48,7 @@ function UserRoutes(app) {
     } else{
       res.json(currentUser)
     }
-  };
-
+  }
 
   app.get("/api/users/:userId", getUserInfo)
   app.post("/api/users/signin", signin)
