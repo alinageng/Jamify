@@ -88,7 +88,8 @@ function Profile() {
 
   return (
     <div className="container">
-      {currentUser && <button className="btn btn-dark float-end" onClick={signout}>
+      {(currentUser &&
+        isMyProfile) && <button className="btn btn-dark float-end" onClick={signout}>
         Logout
       </button>}
       <br></br>
