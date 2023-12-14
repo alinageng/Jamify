@@ -1,6 +1,6 @@
 import * as client from "../users/client";
 import { useNavigate} from "react-router-dom";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import { setCurrentUser } from "../users/userReducer";
 
@@ -21,12 +21,17 @@ function EditProfile() {
         const response = await client.updateUserInfo(currentUser._id, userInfo);
         setError(null);
         dispatch(setCurrentUser(response));
+        alert("Succesfully updated profile!")
+        navigate(`/profile/${currentUser._id}`);
       } catch (error) {
         setError(error);
       }
-      alert("Succesfully updated profile!")
-      navigate(`/profile/${currentUser._id}`);
+
     };
+    useEffect(() => {
+        setUserInfo(JSON.parse(JSON.stringify(currentUser)));
+    },[currentUser])  
+
     return (
         <div className="container">
         <button className="btn btn-light float-end update-button" onClick={backToProfile}>
@@ -36,6 +41,7 @@ function EditProfile() {
         <hr></hr>
 
         {error && <div className="alert alert-danger">{error.message}</div>}
+        {userInfo &&
         <div className={"col-6"}>
           <form>
             <div className="form-group mt-2">
@@ -61,6 +67,7 @@ function EditProfile() {
             <button type="submit" className="btn btn-light mt-4 update-button" onClick={handleUpdateInfo}>Update Info</button>
           </form>
         </div>
+}
       </div>
         
     )
