@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import * as client from "./client";
 import { setCurrentUser } from "./userReducer";
 import { useDispatch } from "react-redux";
+import "./user.css"
 
 function Signup() {
   const [error, setError] = useState("");
@@ -80,6 +81,7 @@ function Signup() {
           ...credentials,
           spotify_username: e.target.value })} />
 
+    <div>
       <label for="roleSelect">
         Role
       </label>
@@ -120,7 +122,6 @@ function Signup() {
           Admin
         </label>
       </div>
-
 
       <button className="btn btn-primary float-end" onClick={signup}>
         Signup
