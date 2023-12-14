@@ -13,8 +13,7 @@ function Navigation() {
             Home
           </NavLink>
         </li>
-
-        {currentUser?.role === 'ADMIN' && ( // Use optional chaining to avoid null errors
+        {currentUser?.role === 'ADMIN' && ( 
           <li className="nav-item">
             <NavLink className="nav-link" to="/admin" activeClassName="active-link">
               Admin
