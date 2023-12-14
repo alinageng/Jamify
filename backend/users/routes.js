@@ -57,6 +57,16 @@ function UserRoutes(app) {
     res.json(response);
   }
 
+
+  const updateUserInfo = async (req, res) => {
+    const userId = req.params.userId;
+    const userInfo = req.body;
+    const response = await dao.updateUserById(userId, userInfo);
+    // console.log("userId ", userId);
+    // console.log("userInfo ", userInfo);
+    res.json(response);
+  }
+
   const findAllUsers = async (req, res) => {
     const users = await dao.findAllUsers();
     res.json(users);
@@ -67,7 +77,6 @@ function UserRoutes(app) {
     res.json(status);
 };
 
-  app.delete("/api/users/:userId", deleteUser);
   app.get("/api/users", findAllUsers);
   app.get("/api/users/:userId", getUserInfo)
   app.post("/api/users/signin", signin)
@@ -75,6 +84,9 @@ function UserRoutes(app) {
   app.post("/api/users/signout", signout)
   app.post("/api/users/signup", signup);
   app.get("/api/users/userInfo", findUserByUsername);
+  app.put("/api/users/:userId", updateUserInfo)
+  app.delete("/api/users/:userId", deleteUser);
+
 }
 
 export default UserRoutes;
