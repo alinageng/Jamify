@@ -1,54 +1,57 @@
-// import { Link } from "react-router-dom";
-// import { useSelector } from "react-redux";
-
-// function Navigation() {
-//   const { currentUser } = useSelector((state) => state.user); // TODO check if this is the currentUser's profile
-//   console.log("current user " + currentUser.role)
-
-//   return (
-//     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-//         <ul className="navbar-nav">
-//           <li className="nav-item">
-//             <Link className="nav-link" to="/home">
-//               Home
-//             </Link>
-//           </li>
-//         {currentUser.role === 'ADMIN' && ( // Use && to conditionally render the Admin link
-//           <li className="nav-item">
-//             <Link className="nav-link" to="/admin">
-//               Admin
-//             </Link>
-//           </li>
-//         )}
-//       </ul>
-//     </nav>
-//   );
-// }
-
-// export default Navigation;
-
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import "./nav.css"
 
 function Navigation() {
   const { currentUser } = useSelector((state) => state.user);
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light nav-bar">
       <ul className="navbar-nav">
         <li className="nav-item">
-          <Link className="nav-link" to="/home">
+          <NavLink className="nav-link" to="/home" activeClassName="active-link">
             Home
-          </Link>
+          </NavLink>
         </li>
         {currentUser?.role === 'ADMIN' && ( 
           <li className="nav-item">
-            <Link className="nav-link" to="/admin">
+            <NavLink className="nav-link" to="/admin" activeClassName="active-link">
               Admin
-            </Link>
+            </NavLink>
+            </li>
+          )
+        }
+
+        {currentUser && ( // Use optional chaining to avoid null errors
+          <li className="nav-item">
+            <NavLink className="nav-link" to={`/profile/${currentUser._id}`} activeClassName="active-link">
+              Profile
+            </NavLink>
           </li>
         )}
-      </ul>
+
+      {currentUser && ( // Use optional chaining to avoid null errors
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/search" activeClassName="active-link">
+              New Post
+            </NavLink>
+          </li>
+        )}
+
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/login" activeClassName="active-link">
+              Log In 
+            </NavLink>
+          </li>
+
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/signup" activeClassName="active-link">
+              Sign Up
+            </NavLink>
+          </li>
+          
+        </ul>
+
     </nav>
   );
 }
