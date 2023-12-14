@@ -32,3 +32,6 @@ export const findPostsForUsersHomepage = async (userId) => {
       throw new Error('Error fetching posts by Spotify ID');
     }
   };
+
+  export const deletePostById = (postId) =>
+    Post.deleteOne({_id: postId});
