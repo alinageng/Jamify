@@ -6,7 +6,6 @@ import { setCurrentUser } from "./userReducer";
 import { useDispatch } from "react-redux";
 import './index.css';
 
-
 function SignIn() {
   const [error, setError] = useState(null);
   const [account, setAccount] = useState({ username: "", password: "" });
