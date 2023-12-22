@@ -34,11 +34,8 @@ function PostDetails() {
   }
 
   useEffect(() => {
-    getComments();
-  }, [postId, comments]);
-
-  useEffect(() => {
     getPost();
+    getComments();
   }, [postId]);
 
   return (
