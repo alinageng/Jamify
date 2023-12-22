@@ -1,4 +1,4 @@
-# cs4550-final-project
+# Jamify
 
 # Setup
 1. run `npm install` in backend/ and frontend/
