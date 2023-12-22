@@ -11,12 +11,11 @@ function DisplayTaggedPosts({spotifyLink}) {
   const fetchPosts = async () => {
     const response = await client.getPostsByTaggedId(spotifyLink);
     setPosts(response.data);
- 
   }
 
   useEffect(() => {
     fetchPosts();
-  })
+  },[])
 
   return (
     <div className="mt-4">

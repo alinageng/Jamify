@@ -17,7 +17,7 @@ function DisplayUserPosts({userId}) {
 
   useEffect(() => {
     fetchPosts();
-  })
+  },[])
 
   return (
     <div>

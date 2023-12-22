@@ -1,11 +1,11 @@
 import axios from "axios";
-import {API_URL} from "../utils/tokens";
+// import {API_URL} from "../utils/tokens";
 
 const request = axios.create({
   withCredentials: true,
 })
 
-const POSTS_API = `${API_URL}/posts`;
+const POSTS_API = `${process.env.REACT_APP_API_URL}/posts`;
 
 export const getAllPosts = async () => {
   const response = await request.get(`${POSTS_API}`);
@@ -23,7 +23,7 @@ export const getPostsComments = async (postId) => {
 }
 
 export const submitNewComment = async (newComment) => {
-  const status = await request.post(`${API_URL}/comments`, newComment)
+  const status = await request.post(`${process.env.REACT_APP_API_URL}/comments`, newComment)
   return status;
 }
 

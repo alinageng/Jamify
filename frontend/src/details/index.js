@@ -19,7 +19,7 @@ function Details() {
 
 
   const backToSearch = async() => {
-    navigate("/search")
+    navigate("/search-music")
   }
 
   const backToHome = async() => {
@@ -50,7 +50,7 @@ function Details() {
 
   useEffect(() => {
     callSearchSpotify();
-  });
+  },[]);
 
   return (
     <div className="container">

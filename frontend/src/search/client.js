@@ -1,11 +1,11 @@
 import axios from "axios";
-import {API_URL} from "../utils/tokens";
+// import {API_URL} from "../utils/tokens";
 
 const request = axios.create({
   withCredentials: true,
 })
 
-const USER_API = `${API_URL}/users`;
+const USER_API = `${process.env.REACT_APP_API_URL}/users`;
 
 export const signIn = async (credentials) => {
   const response = await request.post(`${USER_API}/signin`, credentials);
