@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import {getPostById, getPostsComments, submitNewComment} from "../home/client";
 import {Link, useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
-import TaggedItem from "../taggedItem";
 import './postDetails.css';
 import Post from "./post";
 

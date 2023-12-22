@@ -5,7 +5,6 @@ import DisplayUserPosts from "../postLists/DisplayUserPosts";
 
 import * as client from "../users/client";
 import "./profile.css";
-import {getUserInfo} from "../users/client";
 
 
 // TODO followers and following and posts

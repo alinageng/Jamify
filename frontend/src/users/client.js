@@ -4,9 +4,8 @@ const request = axios.create({
   withCredentials: true,
 })
 
-const API_URL =  "http://localhost:4000/api"; // TODO REMOVE HARDCODED
-const USER_API = `${API_URL}/users`;
-const FOLLOW_API = `${API_URL}/follow`;
+const USER_API = `${process.env.REACT_APP_API_URL}/users`;
+const FOLLOW_API = `${process.env.REACT_APP_API_URL}/follow`;
 
 export const findAllUsers = async () => {
   const response = await axios.get(`${USER_API}`);

@@ -1,4 +1,3 @@
-import React, { useState} from "react";
 import { getSearchResults} from "../utils/spotify-service";
 import {useDispatch, useSelector} from "react-redux";
 import DisplayAlbumResults from "./displayAlbumResults";

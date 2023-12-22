@@ -16,7 +16,6 @@ import Signup from './users/signup';
 import UserTable from './users/table';
 import EditProfile from './profile/editProfile';
 import DisplaySearchResults from "./search/displaySearchResults";
-import SearchMusic from "./search/searchMusic";
 import Explore from './explore';
 
 function App() {

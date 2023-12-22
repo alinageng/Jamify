@@ -1,4 +1,3 @@
-import {useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import * as client from "../home/client";
 import DisplayEachUserPost from "./DisplayEachUserPost";
@@ -18,7 +17,7 @@ function DisplayUserPosts({userId}) {
 
   useEffect(() => {
     fetchPosts();
-  }, [])
+  })
 
   return (
     <div>

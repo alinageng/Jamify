@@ -2,14 +2,12 @@ import React, { useState } from "react";
 import * as client from "./client";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { setCurrentUser } from "./userReducer";
 import { useDispatch } from "react-redux";
 import './index.css';
 
 
 function SignIn() {
-  const { currentUser } = useSelector((state) => state.user);
   const [error, setError] = useState(null);
   const [account, setAccount] = useState({ username: "", password: "" });
   const navigate = useNavigate();
@@ -20,16 +18,15 @@ function SignIn() {
       dispatch(setCurrentUser(currentUser));
       navigate(`/profile/${currentUser._id}`);
     } catch (error) {
-      setError(error);
+      console.log(error);
+      setError(error.response.data);
     }
   };
   return (
     <div className="container">
-      <h1>Sign In 
-        {/* {JSON.stringify(currentUser)} */}
-        </h1>
-        <hr></hr>
-      {error && <div className="alert alert-danger">{error.message}</div>}
+      <h1>Sign In</h1>
+      <hr/>
+      {error && <div className="alert alert-danger">{error}</div>}
       <div className={"col signinCol"}>
         <form>
           <label htmlFor="usernameInput">

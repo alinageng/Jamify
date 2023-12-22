@@ -1,4 +1,3 @@
-import {useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import * as client from "../home/client";
 import DisplayPostsList from "../postLists/DisplayPostsList";
@@ -17,7 +16,7 @@ function DisplayTaggedPosts({spotifyLink}) {
 
   useEffect(() => {
     fetchPosts();
-  }, [])
+  })
 
   return (
     <div className="mt-4">

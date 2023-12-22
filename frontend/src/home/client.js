@@ -1,10 +1,10 @@
 import axios from "axios";
+import {API_URL} from "../utils/tokens";
 
 const request = axios.create({
   withCredentials: true,
 })
 
-const API_URL =  "http://localhost:4000/api"; // TODO REMOVE HARDCODED
 const POSTS_API = `${API_URL}/posts`;
 
 export const getAllPosts = async () => {

@@ -1,4 +1,4 @@
-import {useLocation, useParams} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import { getTrackDetails} from "../utils/spotify-service";
 import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
@@ -16,8 +16,7 @@ function Details() {
   const [details, setDetails] = useState(null);
   const [itemType, setItemType] = useState();
   const { accessToken } = useSelector((state) => state.accessToken);
-  const trackDelimiter = 'tracks/';
-  const albumDelimiter = 'albums/';
+
 
   const backToSearch = async() => {
     navigate("/search")
@@ -51,7 +50,7 @@ function Details() {
 
   useEffect(() => {
     callSearchSpotify();
-  }, []);
+  });
 
   return (
     <div className="container">
@@ -73,7 +72,7 @@ function Details() {
           <h2>
             {details.name}
           </h2>
-          <img src={details.images[1].url} />
+          <img src={details.images[1].url} alt="Album details" />
           <h3>
             Released: {details.release_date}
           </h3>
@@ -106,7 +105,7 @@ function Details() {
           <h2>
             {details.name}
           </h2>
-          <img src={details.album.images[1].url} />
+          <img src={details.album.images[1].url} alt="Album Cover" />
           <h3>
             Released: {details.album.release_date}
           </h3>

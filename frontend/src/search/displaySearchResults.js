@@ -1,19 +1,15 @@
-import React, { useState} from "react";
 import { getSearchResults} from "../utils/spotify-service";
 import {useDispatch, useSelector} from "react-redux";
 import DisplayAlbumResults from "./displayAlbumResults";
 import {setResults, setSearchTerm} from "./taggedItemReducer";
 import DisplayTrackResults from "./displayTrackResults";
-import {useNavigate} from "react-router";
 import "./index.css";
 
 function DisplaySearchResults() {
 
-  const [itemType, setItemType] = useState(null); // "Album", "Playlist", "Track"
   const { accessToken } = useSelector((state) => state.accessToken);
   const { results, searchTerm } = useSelector((state) => state.taggedItem);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const callSearchSpotify = async () => {
     try {
