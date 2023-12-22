@@ -4,7 +4,6 @@ function PostsRoutes(app) {
   const getAllPosts = async (req, res) => {
     const {username, password} = req.body;
     const allPosts = await dao.findAllPosts();
-    console.log("allPosts: ", allPosts);
     res.json(allPosts)
   }
 

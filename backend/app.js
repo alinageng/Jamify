@@ -9,7 +9,6 @@ import PostsRoutes from "./posts/routes.js";
 import CommentsRoutes from "./comments/routes.js";
 import FollowsRoutes from "./followers/routes.js";
 
-// mongoose.connect("mongodb://127.0.0.1:27017/alina");
 const mongodb = process.env.MONGO_DB_URL;
 mongoose.connect(mongodb);
 const allowedOrigins = ["http://localhost:3000", "https://cheery-quokka-e5431d.netlify.app"]
