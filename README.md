@@ -1,4 +1,7 @@
-# cs4550-final-project
+# Jamify
+<h3>Jamify is a social media app that lets users share albums and tracks from Spotify with others</h3>
+<a href="https://cheery-quokka-e5431d.netlify.app">Visit The App</a>
+*You might need to wait a few minutes for the backend to start running
 
 # Setup
 1. run `npm install` in backend/ and frontend/
